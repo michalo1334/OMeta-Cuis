@@ -1,4 +1,4 @@
-'From Cuis7.0 [latest update: #6452] on 20 June 2024 at 3:40:09 pm'!
+'From Cuis7.1 [latest update: #6526] on 13 October 2024 at 8:55:18 pm'!
 'Description OMeta2 (often referred to just as ''OMeta'') is a PEG-based (Parsing Expression Grammar) Object Oriented pattern matching language.   More simply put, it''s a parser which you can use to write other parsers.  A few of its unique characteristics:
 
 1) It is a parasitic language which is a hybrid of its own OMeta syntax and the host language, in this case Smalltalk.
@@ -11,7 +11,7 @@ Note: OMeta2Preload.st needs to be filed in before loading this package (handled
 This package is based on the original work by Alessandro Warth http://www.tinlizzie.org/ometa/OMeta.sar with updates from OMeta2-Preload-hmm.14.mcz OMeta2-Postload-hmm.12.mcz and modified and extended by Phil Bellalouna for Cuis.
 
 Since the original implementation of OMeta2 has been abandoned by its author, I''ve decided to not retain absolute compatiblity with it.  Mostly this means that I''ve made a few minor extensions to the core language that are (mostly) backwards compatible and fixed some bugs.'!
-!provides: 'OMeta2' 2 20!
+!provides: 'OMeta2' 2 21!
 SystemOrganization addCategory: #OMeta2!
 SystemOrganization addCategory: #'OMeta2-Preload'!
 SystemOrganization addCategory: #'OMeta2-Extensions'!
@@ -52,26 +52,6 @@ prePackageInstall
 			show: 'Finished loading OMeta2Preload.st';
 			finishEntry ].! !
 OMeta2Package prePackageInstall!
-!classDefinition: #OMeta2DebugError category: #'OMeta2-Extensions'!
-Error subclass: #OMeta2DebugError
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'OMeta2-Extensions'!
-!classDefinition: 'OMeta2DebugError class' category: #'OMeta2-Extensions'!
-OMeta2DebugError class
-	instanceVariableNames: ''!
-
-!classDefinition: #OM2Fail category: #'OMeta2-Preload'!
-Exception subclass: #OM2Fail
-	instanceVariableNames: 'parserFailedAt'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'OMeta2-Preload'!
-!classDefinition: 'OM2Fail class' category: #'OMeta2-Preload'!
-OM2Fail class
-	instanceVariableNames: ''!
-
 !classDefinition: #OMeta2Compiler category: #'OMeta2-Preload'!
 Compiler subclass: #OMeta2Compiler
 	instanceVariableNames: ''
@@ -92,54 +72,74 @@ MethodNode subclass: #OMeta2MethodNode
 OMeta2MethodNode class
 	instanceVariableNames: ''!
 
-!classDefinition: #OMeta2DebugTests category: #'OMeta2-Tests'!
-TestCase subclass: #OMeta2DebugTests
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'OMeta2-Tests'!
-!classDefinition: 'OMeta2DebugTests class' category: #'OMeta2-Tests'!
-OMeta2DebugTests class
-	instanceVariableNames: ''!
-
-!classDefinition: #OMeta2ExampleTests category: #'OMeta2-Tests'!
-TestCase subclass: #OMeta2ExampleTests
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'OMeta2-Tests'!
-!classDefinition: 'OMeta2ExampleTests class' category: #'OMeta2-Tests'!
-OMeta2ExampleTests class
-	instanceVariableNames: ''!
-
-!classDefinition: #OMeta2StepByStepTests category: #'OMeta2-Tests'!
-TestCase subclass: #OMeta2StepByStepTests
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'OMeta2-Tests'!
-!classDefinition: 'OMeta2StepByStepTests class' category: #'OMeta2-Tests'!
-OMeta2StepByStepTests class
-	instanceVariableNames: ''!
-
-!classDefinition: #SHTextStylerOMeta2 category: #'OMeta2-Extensions'!
-SHTextStyler subclass: #SHTextStylerOMeta2
-	instanceVariableNames: 'smalltalkFallbackStyler useSmalltalkStyler'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'OMeta2-Extensions'!
-!classDefinition: 'SHTextStylerOMeta2 class' category: #'OMeta2-Extensions'!
-SHTextStylerOMeta2 class
-	instanceVariableNames: 'textAttributes'!
-
-!classDefinition: #SHTextStylerOtherOMeta2 category: #'OMeta2-Extensions'!
-SHTextStylerOMeta2 subclass: #SHTextStylerOtherOMeta2
+!classDefinition: #OMeta2DebugError category: #'OMeta2-Extensions'!
+Error subclass: #OMeta2DebugError
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'OMeta2-Extensions'!
-!classDefinition: 'SHTextStylerOtherOMeta2 class' category: #'OMeta2-Extensions'!
-SHTextStylerOtherOMeta2 class
+!classDefinition: 'OMeta2DebugError class' category: #'OMeta2-Extensions'!
+OMeta2DebugError class
+	instanceVariableNames: ''!
+
+!classDefinition: #OM2Fail category: #'OMeta2-Preload'!
+Exception subclass: #OM2Fail
+	instanceVariableNames: 'parserFailedAt'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'OMeta2-Preload'!
+!classDefinition: 'OM2Fail class' category: #'OMeta2-Preload'!
+OM2Fail class
+	instanceVariableNames: ''!
+
+!classDefinition: #OMeta2TreeExample category: #'OMeta2-Examples'!
+Object subclass: #OMeta2TreeExample
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'OMeta2-Examples'!
+!classDefinition: 'OMeta2TreeExample class' category: #'OMeta2-Examples'!
+OMeta2TreeExample class
+	instanceVariableNames: ''!
+
+!classDefinition: #OMeta2TreeEmptyExample category: #'OMeta2-Examples'!
+OMeta2TreeExample subclass: #OMeta2TreeEmptyExample
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'OMeta2-Examples'!
+!classDefinition: 'OMeta2TreeEmptyExample class' category: #'OMeta2-Examples'!
+OMeta2TreeEmptyExample class
+	instanceVariableNames: ''!
+
+!classDefinition: #OMeta2TreeLeafExample category: #'OMeta2-Examples'!
+OMeta2TreeExample subclass: #OMeta2TreeLeafExample
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'OMeta2-Examples'!
+!classDefinition: 'OMeta2TreeLeafExample class' category: #'OMeta2-Examples'!
+OMeta2TreeLeafExample class
+	instanceVariableNames: ''!
+
+!classDefinition: #OMeta2TreeNodeExample category: #'OMeta2-Examples'!
+OMeta2TreeExample subclass: #OMeta2TreeNodeExample
+	instanceVariableNames: 'leftTree rightTree'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'OMeta2-Examples'!
+!classDefinition: 'OMeta2TreeNodeExample class' category: #'OMeta2-Examples'!
+OMeta2TreeNodeExample class
+	instanceVariableNames: ''!
+
+!classDefinition: #SyntaxTreeNode category: #'OMeta2-Extensions'!
+Object subclass: #SyntaxTreeNode
+	instanceVariableNames: 'node properties children'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'OMeta2-Extensions'!
+!classDefinition: 'SyntaxTreeNode class' category: #'OMeta2-Extensions'!
+SyntaxTreeNode class
 	instanceVariableNames: ''!
 
 !classDefinition: #OM2Failer category: #'OMeta2-Preload'!
@@ -322,46 +322,6 @@ OMeta2SqueakSmalltalkRecognizer subclass: #OMeta2CuisSmalltalkRecognizer
 OMeta2CuisSmalltalkRecognizer class
 	instanceVariableNames: ''!
 
-!classDefinition: #OMeta2Debug category: #'OMeta2-Extensions'!
-OMeta2 subclass: #OMeta2Debug
-	instanceVariableNames: 'om2ApplyPc om2ApplyWithArgsPc om2DebugRoot om2Eos om2TraceLog om2Trans om2TransId'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'OMeta2-Extensions'!
-!classDefinition: 'OMeta2Debug class' category: #'OMeta2-Extensions'!
-OMeta2Debug class
-	instanceVariableNames: 'LastMatcher'!
-
-!classDefinition: #OMeta2DebugExample category: #'OMeta2-Examples'!
-OMeta2Debug subclass: #OMeta2DebugExample
-	instanceVariableNames: 'delimCol delimRow'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'OMeta2-Examples'!
-!classDefinition: 'OMeta2DebugExample class' category: #'OMeta2-Examples'!
-OMeta2DebugExample class
-	instanceVariableNames: ''!
-
-!classDefinition: #OMeta2ExtendedRuleParser category: #'OMeta2-Extensions'!
-OMeta2 subclass: #OMeta2ExtendedRuleParser
-	instanceVariableNames: 'ast curNode temps blockLevel'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'OMeta2-Extensions'!
-!classDefinition: 'OMeta2ExtendedRuleParser class' category: #'OMeta2-Extensions'!
-OMeta2ExtendedRuleParser class
-	instanceVariableNames: ''!
-
-!classDefinition: #OMeta2RuleIntrospection category: #'OMeta2-Extensions'!
-OMeta2 subclass: #OMeta2RuleIntrospection
-	instanceVariableNames: 'result'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'OMeta2-Extensions'!
-!classDefinition: 'OMeta2RuleIntrospection class' category: #'OMeta2-Extensions'!
-OMeta2RuleIntrospection class
-	instanceVariableNames: ''!
-
 !classDefinition: #OMeta2CsvExample category: #'OMeta2-Examples'!
 OMeta2 subclass: #OMeta2CsvExample
 	instanceVariableNames: 'delimRow delimCol curRow rows'
@@ -442,62 +402,96 @@ OMeta2 subclass: #OMeta2TreeWalkerExample
 OMeta2TreeWalkerExample class
 	instanceVariableNames: ''!
 
-!classDefinition: #SyntaxTreeNode category: #'OMeta2-Extensions'!
-Object subclass: #SyntaxTreeNode
-	instanceVariableNames: 'node properties children'
+!classDefinition: #OMeta2Debug category: #'OMeta2-Extensions'!
+OMeta2 subclass: #OMeta2Debug
+	instanceVariableNames: 'om2ApplyPc om2ApplyWithArgsPc om2DebugRoot om2Eos om2TraceLog om2Trans om2TransId'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'OMeta2-Extensions'!
-!classDefinition: 'SyntaxTreeNode class' category: #'OMeta2-Extensions'!
-SyntaxTreeNode class
+!classDefinition: 'OMeta2Debug class' category: #'OMeta2-Extensions'!
+OMeta2Debug class
+	instanceVariableNames: 'LastMatcher'!
+
+!classDefinition: #OMeta2DebugExample category: #'OMeta2-Examples'!
+OMeta2Debug subclass: #OMeta2DebugExample
+	instanceVariableNames: 'delimCol delimRow'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'OMeta2-Examples'!
+!classDefinition: 'OMeta2DebugExample class' category: #'OMeta2-Examples'!
+OMeta2DebugExample class
 	instanceVariableNames: ''!
 
-!classDefinition: #OMeta2TreeExample category: #'OMeta2-Examples'!
-Object subclass: #OMeta2TreeExample
+!classDefinition: #OMeta2ExtendedRuleParser category: #'OMeta2-Extensions'!
+OMeta2 subclass: #OMeta2ExtendedRuleParser
+	instanceVariableNames: 'ast curNode temps blockLevel'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'OMeta2-Extensions'!
+!classDefinition: 'OMeta2ExtendedRuleParser class' category: #'OMeta2-Extensions'!
+OMeta2ExtendedRuleParser class
+	instanceVariableNames: ''!
+
+!classDefinition: #OMeta2RuleIntrospection category: #'OMeta2-Extensions'!
+OMeta2 subclass: #OMeta2RuleIntrospection
+	instanceVariableNames: 'result'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'OMeta2-Extensions'!
+!classDefinition: 'OMeta2RuleIntrospection class' category: #'OMeta2-Extensions'!
+OMeta2RuleIntrospection class
+	instanceVariableNames: ''!
+
+!classDefinition: #SHTextStylerOMeta2 category: #'OMeta2-Extensions'!
+SHTextStyler subclass: #SHTextStylerOMeta2
+	instanceVariableNames: 'smalltalkFallbackStyler useSmalltalkStyler'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'OMeta2-Extensions'!
+!classDefinition: 'SHTextStylerOMeta2 class' category: #'OMeta2-Extensions'!
+SHTextStylerOMeta2 class
+	instanceVariableNames: 'textAttributes'!
+
+!classDefinition: #SHTextStylerOtherOMeta2 category: #'OMeta2-Extensions'!
+SHTextStylerOMeta2 subclass: #SHTextStylerOtherOMeta2
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'OMeta2-Examples'!
-!classDefinition: 'OMeta2TreeExample class' category: #'OMeta2-Examples'!
-OMeta2TreeExample class
+	category: 'OMeta2-Extensions'!
+!classDefinition: 'SHTextStylerOtherOMeta2 class' category: #'OMeta2-Extensions'!
+SHTextStylerOtherOMeta2 class
 	instanceVariableNames: ''!
 
-!classDefinition: #OMeta2TreeEmptyExample category: #'OMeta2-Examples'!
-OMeta2TreeExample subclass: #OMeta2TreeEmptyExample
+!classDefinition: #OMeta2DebugTests category: #'OMeta2-Tests'!
+TestCase subclass: #OMeta2DebugTests
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'OMeta2-Examples'!
-!classDefinition: 'OMeta2TreeEmptyExample class' category: #'OMeta2-Examples'!
-OMeta2TreeEmptyExample class
+	category: 'OMeta2-Tests'!
+!classDefinition: 'OMeta2DebugTests class' category: #'OMeta2-Tests'!
+OMeta2DebugTests class
 	instanceVariableNames: ''!
 
-!classDefinition: #OMeta2TreeLeafExample category: #'OMeta2-Examples'!
-OMeta2TreeExample subclass: #OMeta2TreeLeafExample
-	instanceVariableNames: 'value'
+!classDefinition: #OMeta2ExampleTests category: #'OMeta2-Tests'!
+TestCase subclass: #OMeta2ExampleTests
+	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'OMeta2-Examples'!
-!classDefinition: 'OMeta2TreeLeafExample class' category: #'OMeta2-Examples'!
-OMeta2TreeLeafExample class
+	category: 'OMeta2-Tests'!
+!classDefinition: 'OMeta2ExampleTests class' category: #'OMeta2-Tests'!
+OMeta2ExampleTests class
 	instanceVariableNames: ''!
 
-!classDefinition: #OMeta2TreeNodeExample category: #'OMeta2-Examples'!
-OMeta2TreeExample subclass: #OMeta2TreeNodeExample
-	instanceVariableNames: 'leftTree rightTree'
+!classDefinition: #OMeta2StepByStepTests category: #'OMeta2-Tests'!
+TestCase subclass: #OMeta2StepByStepTests
+	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'OMeta2-Examples'!
-!classDefinition: 'OMeta2TreeNodeExample class' category: #'OMeta2-Examples'!
-OMeta2TreeNodeExample class
+	category: 'OMeta2-Tests'!
+!classDefinition: 'OMeta2StepByStepTests class' category: #'OMeta2-Tests'!
+OMeta2StepByStepTests class
 	instanceVariableNames: ''!
 
-
-!OMeta2DebugError commentStamp: '<historical>' prior: 0!
-This is so we can determine debug vs. regular OMeta runtime errors!
-
-!OM2Fail commentStamp: '<historical>' prior: 0!
-I represent a match failure.  Try using #matchAll:with:ifFail: rather than handling me directly.!
 
 !OMeta2Compiler commentStamp: '<historical>' prior: 0!
 I provide the interface that the Smalltalk environment expects.  In turn, I call out to various OMeta parsers that actually perform the compilation.
@@ -507,18 +501,33 @@ I use the indirection provided by OMeta2 class methods to allow for overriding o
 !OMeta2MethodNode commentStamp: '<historical>' prior: 0!
 I exist so that OMeta methods can be viewed in the code browsers.!
 
-!OMeta2StepByStepTests commentStamp: '<historical>' prior: 0!
-This class is intended both to be a test of core OMeta functionality as well as a step by step tutorial of sorts demonstrating every aspect of OMeta that you can use in your grammars.  If you go through the tests in sequence, it should all make sense when you are done.
+!OMeta2DebugError commentStamp: '<historical>' prior: 0!
+This is so we can determine debug vs. regular OMeta runtime errors!
 
-Everything used in these tests should be considered part of the supported language/API.!
+!OM2Fail commentStamp: '<historical>' prior: 0!
+I represent a match failure.  Try using #matchAll:with:ifFail: rather than handling me directly.!
 
-!SHTextStylerOMeta2 commentStamp: '<historical>' prior: 0!
-Styler for OMeta2-based code (which can include Smalltalk)!
+!OMeta2TreeExample commentStamp: '<historical>' prior: 0!
+Based on Frank Shearar's post http://www.lshift.net/blog/2011/05/15/algebraic-data-types-and-ometa2/
 
-!SHTextStylerOtherOMeta2 commentStamp: '<historical>' prior: 0!
-Styler for 'other' OMeta2-based code (which doesn't necessarily use OMeta or Smalltalk syntax).  Since this can be arbitrary code, it doesn't attempt to parse it: it bolds the first line and displays the rest as normal text.
+This example demonstrates using OMeta to parse a tree structure.  The parser is in OMeta2TreeWalkerExample.
 
-FIXME - when in prettyPrint mode should use a fallback Smalltalk styler (so actually we want to use the fallback parser as the primary (can't it doesn't error... so we use the OMeta parser which also handles Smalltalk... FIXME: hack) and if it fails, do it another way)!
+To run this example:
+
+OMeta2TreeExample demo
+!
+
+!OMeta2TreeEmptyExample commentStamp: '<historical>' prior: 0!
+See OMeta2TreeExample!
+
+!OMeta2TreeLeafExample commentStamp: '<historical>' prior: 0!
+See OMeta2TreeExample!
+
+!OMeta2TreeNodeExample commentStamp: '<historical>' prior: 0!
+See OMeta2TreeExample!
+
+!SyntaxTreeNode commentStamp: '<historical>' prior: 0!
+A simple, generic syntax tree node which can be used for both concrete and abstract trees.!
 
 !OM2Failer commentStamp: '<historical>' prior: 0!
 I am used to capture left recursion failures.  Do not use me directly, I am an implementation detail.!
@@ -607,30 +616,6 @@ OMeta implementation!
 !OMeta2CuisSmalltalkRecognizer commentStamp: '<historical>' prior: 0!
 Extensions specific to Cuis!
 
-!OMeta2Debug commentStamp: '<historical>' prior: 0!
-This is a debugging and profiling version of OMeta2.  It trades quite a bit of performance to try to detect and report known runtime errors and collect detailed statistics.  This is often worthwhile when initially designing and debugging a parser.
-
-To use, simply set this class as your parser's parent class.  Once you're happy with how the parser is operating, feel free to change your parser's parent class back to OMeta2 to eliminate the runtime overhead.
-
-todo: infinite recursion detection
-
-FIXME - due to inlining, need to move apply overrides to a subclass of OMeta2Translator!
-
-!OMeta2DebugExample commentStamp: '<historical>' prior: 0!
-Examples of the kinds of issues OMeta2Debug should catch!
-
-!OMeta2ExtendedRuleParser commentStamp: '<historical>' prior: 0!
-This is a more full-featured OMeta parser that renders to a labelled syntax tree.  While significantly larger than the default parser, it will allow for much more flexibility.
-
-Open issues:
-- should I even be trying to re-use Smalltalk themes?  There is no clean mapping so even if we do it, using other themes may look unacceptably bad.
-- need to finalize approach: extend existing ast or go with a more annotated version?!
-
-!OMeta2RuleIntrospection commentStamp: '<historical>' prior: 0!
-Utility rules to ask questions about rules.  While these rules aren't directly used compiling OMeta2 code into Smalltalk, they help with some core functionality.  All of these rules expect to match a parsed rule AST.
-
-Note: these rules all assume that you are using OMeta in the 'normal' way via OMeta source code.  If you are directly invoking rules via Smalltalk blocks etc., these rules will not see that.!
-
 !OMeta2CsvExample commentStamp: '<historical>' prior: 0!
 This is a trivial CSV importer.  Just to make it a bit more interesting, the column and row delimiters are variables so this could easily be adapted to other delimiters either by subclassing or by parameterizing the csv rule.
 
@@ -679,46 +664,42 @@ WIP / todo core syntax including: lookahead, grouping, form, foreign rules.  Als
 !OMeta2TreeWalkerExample commentStamp: '<historical>' prior: 0!
 See OMeta2TreeExample!
 
-!SyntaxTreeNode commentStamp: '<historical>' prior: 0!
-A simple, generic syntax tree node which can be used for both concrete and abstract trees.!
+!OMeta2Debug commentStamp: '<historical>' prior: 0!
+This is a debugging and profiling version of OMeta2.  It trades quite a bit of performance to try to detect and report known runtime errors and collect detailed statistics.  This is often worthwhile when initially designing and debugging a parser.
 
-!OMeta2TreeExample commentStamp: '<historical>' prior: 0!
-Based on Frank Shearar's post http://www.lshift.net/blog/2011/05/15/algebraic-data-types-and-ometa2/
+To use, simply set this class as your parser's parent class.  Once you're happy with how the parser is operating, feel free to change your parser's parent class back to OMeta2 to eliminate the runtime overhead.
 
-This example demonstrates using OMeta to parse a tree structure.  The parser is in OMeta2TreeWalkerExample.
+todo: infinite recursion detection
 
-To run this example:
+FIXME - due to inlining, need to move apply overrides to a subclass of OMeta2Translator!
 
-OMeta2TreeExample demo
-!
+!OMeta2DebugExample commentStamp: '<historical>' prior: 0!
+Examples of the kinds of issues OMeta2Debug should catch!
 
-!OMeta2TreeEmptyExample commentStamp: '<historical>' prior: 0!
-See OMeta2TreeExample!
+!OMeta2ExtendedRuleParser commentStamp: '<historical>' prior: 0!
+This is a more full-featured OMeta parser that renders to a labelled syntax tree.  While significantly larger than the default parser, it will allow for much more flexibility.
 
-!OMeta2TreeLeafExample commentStamp: '<historical>' prior: 0!
-See OMeta2TreeExample!
+Open issues:
+- should I even be trying to re-use Smalltalk themes?  There is no clean mapping so even if we do it, using other themes may look unacceptably bad.
+- need to finalize approach: extend existing ast or go with a more annotated version?!
 
-!OMeta2TreeNodeExample commentStamp: '<historical>' prior: 0!
-See OMeta2TreeExample!
+!OMeta2RuleIntrospection commentStamp: '<historical>' prior: 0!
+Utility rules to ask questions about rules.  While these rules aren't directly used compiling OMeta2 code into Smalltalk, they help with some core functionality.  All of these rules expect to match a parsed rule AST.
 
-!OM2Fail methodsFor: 'exceptionDescription' stamp: 'aw 2/26/2009 11:03'!
-defaultAction
+Note: these rules all assume that you are using OMeta in the 'normal' way via OMeta source code.  If you are directly invoking rules via Smalltalk blocks etc., these rules will not see that.!
 
-	self error: 'match failed'! !
+!SHTextStylerOMeta2 commentStamp: '<historical>' prior: 0!
+Styler for OMeta2-based code (which can include Smalltalk)!
 
-!OM2Fail methodsFor: 'accessing' stamp: 'pb 9/5/2017 13:01'!
-parserFailedAt
-	^ parserFailedAt.! !
+!SHTextStylerOtherOMeta2 commentStamp: '<historical>' prior: 0!
+Styler for 'other' OMeta2-based code (which doesn't necessarily use OMeta or Smalltalk syntax).  Since this can be arbitrary code, it doesn't attempt to parse it: it bolds the first line and displays the rest as normal text.
 
-!OM2Fail methodsFor: 'private' stamp: 'pb 9/5/2017 13:01'!
-privateParserFailedAt: pos
-	parserFailedAt := pos.! !
+FIXME - when in prettyPrint mode should use a fallback Smalltalk styler (so actually we want to use the fallback parser as the primary (can't it doesn't error... so we use the OMeta parser which also handles Smalltalk... FIXME: hack) and if it fails, do it another way)!
 
-!OM2Fail class methodsFor: 'exceptionInstantiator' stamp: 'pb 9/5/2017 13:01'!
-parserFailedAt: positionInStream
-	^ self new
-		privateParserFailedAt: positionInStream;
-		signal.! !
+!OMeta2StepByStepTests commentStamp: '<historical>' prior: 0!
+This class is intended both to be a test of core OMeta functionality as well as a step by step tutorial of sorts demonstrating every aspect of OMeta that you can use in your grammars.  If you go through the tests in sequence, it should all make sense when you are done.
+
+Everything used in these tests should be considered part of the supported language/API.!
 
 !OMeta2Compiler methodsFor: 'private-ometa2preload' stamp: 'aw 2/18/2009 16:30'!
 compile: origCode in: cls classified: aCategory notifying: notify ifFail: failBlock
@@ -837,741 +818,254 @@ schematicTempNamesString
 This fixes an error when attempting to prettyPrint OMeta source code. (prettyPrint reveals the actual Smalltalk code generated by OMeta)"
         ^nil! !
 
-!OMeta2DebugTests methodsFor: 'test case' stamp: 'pb 6/20/2016 22:23'!
-testForm
-	"Verify that debug tracing logic doesn't interfere with form operation"
-	self should: (OMeta2DebugExample debugMatch: #('testing') with: #debugForm) = #('testing')
-! !
+!OM2Fail methodsFor: 'exceptionDescription' stamp: 'aw 2/26/2009 11:03'!
+defaultAction
 
-!OMeta2DebugTests methodsFor: 'test case' stamp: 'pb 5/2/2020 14:30:20'!
-testInfiniteRecursion
-	self flag: #FIXME. "Also need to handle case where not eos but input not advancing"
-	self should: [OMeta2DebugExample match: 'does not matter what goes here' with: #infiniteRecursion] raise: OMeta2DebugError "Infinite recursion detected".
-! !
+	self error: 'match failed'! !
 
-!OMeta2DebugTests methodsFor: 'test case' stamp: 'pb 6/12/2015 14:59'!
-testNotASequence
-	self should: [OMeta2DebugExample match: 'does not matter what goes here' with: #notASequence] raise: OMeta2DebugError "Not a sequence: a".
-! !
+!OM2Fail methodsFor: 'accessing' stamp: 'pb 9/5/2017 13:01'!
+parserFailedAt
+	^ parserFailedAt.! !
 
-!OMeta2ExampleTests methodsFor: 'test case' stamp: 'pb 5/20/2020 00:08:12'!
-testAllLowercase
-	self should:
-		(OMeta2ExamplesCoverage
-			matchAll: 'lower'
-			with: #allLowercase).
-	self shouldFail: [
-		OMeta2ExamplesCoverage
-			matchAll: 'Lower'
-			with: #allLowercase ].! !
+!OM2Fail methodsFor: 'private' stamp: 'pb 9/5/2017 13:01'!
+privateParserFailedAt: pos
+	parserFailedAt := pos.! !
 
-!OMeta2ExampleTests methodsFor: 'test case' stamp: 'pb 5/20/2020 00:08:12'!
-testAllUppercase
-	self should:
-		(OMeta2ExamplesCoverage
-			matchAll: 'UPPER'
-			with: #allUppercase).
-	self shouldFail: [
-		OMeta2ExamplesCoverage
-			matchAll: 'Upper'
-			with: #allUppercase ].! !
+!OM2Fail class methodsFor: 'exceptionInstantiator' stamp: 'pb 9/5/2017 13:01'!
+parserFailedAt: positionInStream
+	^ self new
+		privateParserFailedAt: positionInStream;
+		signal.! !
 
-!OMeta2ExampleTests methodsFor: 'test case' stamp: 'pb 5/26/2015 03:43'!
-testFactorial
-	self should: (OMeta2Examples match: 0 with: #fact) = 1.
-	self should: (OMeta2Examples match: 5 with: #fact) = 120.
-	self should: (OMeta2Examples match: 10 with: #fact) = 3628800.! !
+!OMeta2TreeExample methodsFor: 'as yet unclassified' stamp: 'pb 5/23/2015 16:18'!
+depth
+	^ OMeta2TreeWalkerExample match: self with: #depth! !
 
-!OMeta2ExampleTests methodsFor: 'test case' stamp: 'pb 5/22/2015 16:54'!
-testGreeting
-	self should: (OMeta2Examples matchAll: 'howdy' with: #greeting) = 'howdy'! !
+!OMeta2TreeExample methodsFor: 'as yet unclassified' stamp: 'pb 5/23/2015 16:18'!
+readStream
+	^ self unapply readStream! !
 
-!OMeta2ExampleTests methodsFor: 'test case' stamp: 'pb 5/9/2020 04:40:53'!
-testIdentifierIndex
-	"rangeAssoc"
-	self
-		assert: 1 -> 9
-		equals:
-			(OMeta2Examples
-				matchAll: 'abc123sd'
-				with: #identifierIdx).! !
+!OMeta2TreeExample methodsFor: 'as yet unclassified' stamp: 'pb 5/23/2015 16:18'!
+sum
+	^ OMeta2TreeWalkerExample match: self with: #sum! !
 
-!OMeta2ExampleTests methodsFor: 'test case' stamp: 'pb 5/23/2015 22:01'!
-testLambdaCalculus
-	self should: (OMeta2LambdaCalculusParserExample matchAll: '4' with: #digit) = 4.
-	self should: (OMeta2LambdaCalculusParserExample matchAll: 'x and y' with: #root) =   #(#('and' #('name' #x) #('name' #y))).
-	self should: (OMeta2LambdaCalculusParserExample matchAll: 'x and y;x*y' with: #root) =   #(#('and' #('name' #x) #('name' #y)) #('mul' #('name' #x) #('name' #y)))! !
+!OMeta2TreeExample methodsFor: 'testing' stamp: 'pb 5/23/2015 14:55'!
+isCollection
+	^ true! !
 
-!OMeta2ExampleTests methodsFor: 'test case' stamp: 'pb 5/24/2019 19:12:10'!
-testLisp
-	| lispClass |
-	lispClass := OMeta2LispExample.
-	"*** ev rule tests..."
-	"string"
-	self should: (lispClass eval: #t).
-	self should: (lispClass eval: #z) = nil.
-	"lambda... under app rule tests"
-	"quote"
-	self should: (lispClass eval: #(#quote 1 )) = 1.
-	self should: (lispClass eval: #(
-				#quote
-				#(1 2 3 )
-			)) = #(1 2 3 ).
-	"cond"
-	self should: (lispClass eval: #(#cond nil )) = nil.
-	self should: (lispClass eval: #(
-				#cond
-				#(#(#eq #(#quote #a) #(#quote #b)) #(#quote #optiona) )
-				#(#(#eq #(#quote #b) #(#quote #b)) #(#quote #optionb) )
-				#(#t #(#quote #invalid) )
-			)) = #optionb.
-	self should: (lispClass eval: #(
-				#cond
-				#(#(#eq #(#quote #a) #(#quote #b)) #(#quote #optiona) )
-				#(#(#eq #(#quote #b) #(#quote 3)) #(#quote #optionb) )
-				#(#t #(#quote #invalid) )
-			)) = #invalid.
-	"*** app rule tests..."
-	"car"
-	self should: (lispClass eval: #(
-				#car
-				#(#quote #(1 2 3) )
-			)) = 1.
-	"cdr"
-	self flag: #fixTest.
-	"Should this be an OC?"
-	"self should: (lispClass eval: #(cdr (quote (1 2 3)))) = #(2 3)."
-	self should:
-		(lispClass eval: #(
-				#cdr
-				#(#quote #(1 2 3) )
-			)) =
-			(OrderedCollection new
-				add: 2;
-				add: 3;
-				yourself).
-	"cons"
-	self should: (lispClass eval: #(
-				#cons
-				#(#quote #a )
-				#(#quote #b )
-			)) = #(#a #b ).
-	"atom"
-	self should: (lispClass eval: #(
-				#atom
-				#(#quote #a )
-			)).
-	self should: (lispClass eval: #(
-				#atom
-				#(#cons #(#quote #a) #(#quote #b) )
-			)) not.
-	"eq"
-	"a and b are both nil so eq should always return true (in a real Lisp environment, this would result in an error)"
-	self should: (lispClass eval: #(#eq #a #a )).
-	self should: (lispClass eval: #(#eq #a #b )).
-	"when quoted, you get the results you were probably expecting"
-	self should: (lispClass eval: #(
-				#eq
-				#(#quote #a )
-				#(#quote #a )
-			)).
-	self should: (lispClass eval: #(
-				#eq
-				#(#quote #a )
-				#(#quote #b )
-			)) not.
-	"lambda"
-	self should: (lispClass eval: #(
-				#(#lambda #(#x) #(#cons #x #x) )
-				#(#quote #boo )
-			)) = #(#boo #boo ).
-	"*** more complex and multiple expressions"
-	self should: (lispClass evalAll: #(
-				#(#eq #(#quote #a) #(#quote #b) )
-				#(#cons #(#quote #x) #(#quote #y) )
-			)) = #(#x #y ).
-	self should: (lispClass evalAll: #(
-				#(#cons #(#eq #(#quote #a) #(#quote #b)) #(#cons #(#quote #x) #(#quote #y)) )
-			)) = #(
-				false
-				#(#x #y )
-			).
-	self should: (lispClass evalAll: #(
-				#(#(#lambda #(#x) #(#cons #x #x)) #(#quote #boo) )
-				#(#eq #a #b )
-			)).
-	self should: (lispClass evalAll: #(
-				#(#cons #(#(#lambda #(#x) #(#cons #x #x)) #(#quote #boo)) #(#eq #x #(#quote #boo)) )
-			)) = #(
-				#(#boo #boo )
-				false
-			).
-	self should: (lispClass eval: #(
-				#(#lambda #(#x) #(#cond #(#(#eq #(#quote #a) #x) #(#quote #optiona)) #(#(#eq #(#quote #b) #x) #(#quote #optionb)) #(#t #(#quote #invalid))) )
-				#(#quote #a )
-			)) = #optiona.
-	self should: (lispClass eval: #(
-				#(#lambda #(#x) #(#cond #(#(#eq #(#quote #a) #x) #(#quote #optiona)) #(#(#eq #(#quote #b) #x) #(#quote #optionb)) #(#t #(#quote #invalid))) )
-				#(#quote #b )
-			)) = #optionb.
-	self should: (lispClass eval: #(
-				#(#lambda #(#x) #(#cond #(#(#eq #(#quote #a) #x) #(#quote #optiona)) #(#(#eq #(#quote #b) #x) #(#quote #optionb)) #(#t #(#quote #invalid))) )
-				#(#quote #c )
-			)) = #invalid.! !
+!OMeta2TreeExample methodsFor: 'testing' stamp: 'pb 5/23/2015 14:55'!
+isSequenceable
+	^ true! !
 
-!OMeta2ExampleTests methodsFor: 'test case' stamp: 'pb 5/20/2020 00:30:59'!
-testNotLastNumber
-	self should:
-		(OMeta2ExamplesCoverage
-			matchAll:
-				{1. 1. 'ok'}
-			with: #notLastNumber).
-	self shouldFail: [
-		OMeta2ExamplesCoverage
-			matchAll:
-				{1. 'bad'. 'ok'}
-			with: #notLastNumber ].! !
-
-!OMeta2ExampleTests methodsFor: 'test case' stamp: 'pb 5/20/2020 00:35:52'!
-testNotLastUppercase
-	self should:
-		(OMeta2ExamplesCoverage
-			matchAll: 'CAps'
-			with: #notLastUppercase).
-	self shouldFail: [
-		OMeta2ExamplesCoverage
-			matchAll: 'Caps'
-			with: #notLastUppercase ].! !
-
-!OMeta2ExampleTests methodsFor: 'test case' stamp: 'pb 5/26/2015 03:34'!
-testNumber
-	self should: (OMeta2Examples matchAll: '1234' with: #number) = 1234.
-	self should: [OMeta2Examples match: '1234' with: #number] raise: OM2Fail.
-! !
-
-!OMeta2ExampleTests methodsFor: 'test case' stamp: 'pb 5/22/2015 16:53'!
-testObjectStructure
-	self should: (OMeta2Examples matchAll: #($a $b $c 1 2 3 #(4 5)) with: #structure) = #(4 5)
-! !
-
-!OMeta2ExampleTests methodsFor: 'test case' stamp: 'pb 5/20/2020 00:08:12'!
-testRangeFromTo
-	self should:
-		(OMeta2ExamplesCoverage
-			match: $c
-			with: #rangeFromTo
-			withArgs:
-				{$a. $f}) = $c.
-	self shouldFail: [
-		OMeta2ExamplesCoverage
-			match: $g
-			with: #rangeFromTo
-			withArgs:
-				{$a. $f} ].
-	self should:
-		(OMeta2ExamplesCoverage
-			match: 20
-			with: #rangeFromTo
-			withArgs:
-				{10. 100}) = 20.! !
-
-!OMeta2ExampleTests methodsFor: 'test case' stamp: 'pb 5/22/2015 16:52'!
-testStringMatch
-	self should: (OMeta2Examples matchAll: 'abc123' with: #identifier) = 'abc123'
-! !
-
-!OMeta2ExampleTests methodsFor: 'test case' stamp: 'pb 5/23/2015 16:22'!
-testTree
+!OMeta2TreeExample class methodsFor: 'as yet unclassified' stamp: 'pb 5/23/2015 17:01'!
+demo
 	| tree |
-	tree := OMeta2TreeExample demoTree.
-	self should:  tree unapply = #(#Node #(#Node #(#Leaf 3) #(#Node #(#Leaf 1) #(#Node #(#Leaf 1) #(#Leaf 1)))) #(#Node #(#Leaf 5) #(#Empty))).
-	self should: tree depth = 5.
-	self should: tree sum = 11.! !
-
-!OMeta2StepByStepTests methodsFor: 'test case' stamp: 'pb 6/9/2015 22:36'!
-test00Anything
-	"Understanding how OMeta views input is critical.  To OMeta, the input stream is just one or more objects."
-
-	"Will literally match anything (i.e. an identity match)"
-	self should: (OMeta2StepByStepExample match: nil with: #testAnything) = nil.
-	self should: (OMeta2StepByStepExample match: $a with: #testAnything) = $a.
-	self should: (OMeta2StepByStepExample match: '' with: #testAnything) = ''.
-	self should: (OMeta2StepByStepExample match: 'aaa' with: #testAnything) = 'aaa'.
-	self should: (OMeta2StepByStepExample match: 3 with: #testAnything) = 3.
-	self should: (OMeta2StepByStepExample match: Dictionary with: #testAnything) = Dictionary. "you can pass in objects of any type, including classes"
-	self should: (OMeta2StepByStepExample match: #($a 'b' (1 2 3) nil) with: #testAnything) = #($a 'b' (1 2 3) nil). "in this case, the array is treated as a single object to be matched"
-
-	"If you have many anythings, we can match those too"
-	self should: (OMeta2StepByStepExample matchAll: #($a 'b' (1 2 3) nil) with: #testManyAnything) = (OrderedCollection new add: $a; add: 'b'; add: #(1 2 3); add: nil; yourself). "in this case, the array is treated as a collection of objects to be matched"
-	self should: (OMeta2StepByStepExample matchAll: 'aaa' with: #testManyAnything) = (OrderedCollection new add: $a; add: $a; add: $a; yourself) "a string is just a collection of characters.  this will be hit on a couple of more times... it's important!!"! !
-
-!OMeta2StepByStepTests methodsFor: 'test case' stamp: 'pb 5/2/2020 14:30:39'!
-test01Character
-	| emptyOC aOC aaaaaOC |
-	"FIXME - need to cover letter, digit, etc."
-	"covers the use of literals as well as * and + operators with character matches"
-	emptyOC := OrderedCollection new.
-	aOC := (OrderedCollection new add: $a; yourself).
-	aaaaaOC := OrderedCollection new add: $a; add: $a; add: $a; add: $a; add: $a; yourself.
-
-	"Note that #matchAll: expects strings for arity matches since 'string' is just a sequence of characters while #match: expects a single character"
-	self should: (OMeta2StepByStepExample match: $a with: #testLiteralChar) = $a.
-	self should: (OMeta2StepByStepExample matchAll: 'a' with: #testLiteralChar) = $a.
-	self should: (OMeta2StepByStepExample matchAll: '' with: #testManyChar) = emptyOC. "Note that this works since * allows 0 matches"
-	self should: (OMeta2StepByStepExample matchAll: 'aaaaa' with: #testManyChar) = aaaaaOC.
-	self should: (OMeta2StepByStepExample matchAll: 'aaaaa' with: #testMany1Char) = aaaaaOC.
-	self should: (OMeta2StepByStepExample matchAll: 'a' with: #testMany1Char) = aOC. "#test04ConsumedBy  shows you one way to get strings back"! !
-
-!OMeta2StepByStepTests methodsFor: 'test case' stamp: 'pb 6/9/2015 22:37'!
-test02String
-	| abcOC abcabcOC |
-	"covers the use of literals, *, +, ? and tokens with string matches"
-	abcOC := (OrderedCollection new add: 'abc'; yourself).
-	abcabcOC := OrderedCollection new add: 'abc'; add: 'abc'; yourself.
-
-	"Note that #matchAll: expects collections of strings for arity matches since 'string' is a single string object while #match: expects a single string"
-	self should: (OMeta2StepByStepExample match: 'abc' with: #testLiteralString) = 'abc'.
-	self should: (OMeta2StepByStepExample matchAll: #('abc' ) with: #testLiteralString) = 'abc'.
-	self should: (OMeta2StepByStepExample matchAll: #('abc' 'abc' ) with: #testManyString) = abcabcOC.
-	self should: (OMeta2StepByStepExample matchAll: #('abc' 'abc' ) with: #testMany1String) = abcabcOC.
-	self should: (OMeta2StepByStepExample matchAll: #('abc' ) with: #testMany1String) = abcOC.
-	self should: (OMeta2StepByStepExample matchAll: 'abc' with: #testOpt) = 'abc'.
-	self should: (OMeta2StepByStepExample matchAll: '' with: #testOpt) = nil.
-
-	"Tokens are strings that ignore leading spaces.  You could override the definition of #spaces to include other types of whitespace if you want for your grammar."
-	self should: (OMeta2StepByStepExample matchAll: '   item      item' with: #testToken) = 'item'.! !
-
-!OMeta2StepByStepTests methodsFor: 'test case' stamp: 'pb 6/9/2015 22:37'!
-test03Sequence
-	"Sequences (i.e. ordered collections) of objects"
-	self should: (OMeta2StepByStepExample matchAll: 'itemitem' with: #testSeqString) = 'item'.
-	self should: (OMeta2StepByStepExample matchAll: #($i $t $e $m $i $t $e $m) with: #testSeqString) = 'item'. "sequences of characters are strings as far as seq is concerned"
-	self should: (OMeta2StepByStepExample matchAll: #(1 2 3) with: #testSeqObject) = #(1 2 3). "not just for strings though"! !
-
-!OMeta2StepByStepTests methodsFor: 'test case' stamp: 'pb 5/9/2020 04:41:21'!
-test04ConsumedBy
-	"rangeAssoc"
-	"pvtOMetaConsumedBy <> and pvtOMetaIndexConsumedBy @<>"
-	"Returns the input 'consumed' by the rule.  Now we don't have to deal with a collection of characters"
-	self
-		assert: 'feed me'
-		equals:
-			(OMeta2StepByStepExample
-				matchAll: 'feed me'
-				with: #testConsumedBy).
-	"this returns the positional index range of the beginning and end of the match"
-	self
-		assert: 1 -> 8
-		equals:
-			(OMeta2StepByStepExample
-				matchAll: 'feed me'
-				with: #testConsumedByIndex).! !
-
-!OMeta2StepByStepTests methodsFor: 'test case' stamp: 'pb 5/9/2019 23:22:07'!
-test05PredicateAction
-	self should:
-		(OMeta2StepByStepExample
-			matchAll: 'testing'
-			with: #testSemanticPredicate).
-	"notice that the predicate, being the last expression in the rule, again overrides the default return value.  This rule also introduces the assignment operator."
-	self should:
-		(OMeta2StepByStepExample
-			matchAll: 'testing'
-			with: #testSemanticAction) = 'got it!!'.! !
-
-!OMeta2StepByStepTests methodsFor: 'test case' stamp: 'pb 6/9/2015 22:58'!
-test06PrioritizedChoice
-	self should: (OMeta2StepByStepExample matchAll: 'testing' with: #testPrioritizedChoice) = 'got it!!'. "prioritized choice to the rescue!!"
-	self should: (OMeta2StepByStepExample matchAll: 'not' with: #testPrioritizedChoice) = 'not'.
-! !
-
-!OMeta2StepByStepTests methodsFor: 'test case' stamp: 'pb 5/2/2020 14:30:49'!
-test07Lookahead
-	"FIXME - todo & operator"
-	self should: (OMeta2StepByStepExample matchAll: '''not a double quote''' with: #testLookaheadNot) = #($' $n $o $t $  $a $  $d $o $u $b $l $e $  $q $u $o $t $e $') asOrderedCollection. "we get a sequence of characters back because this rule matches character by character."! !
-
-!OMeta2StepByStepTests methodsFor: 'test case' stamp: 'pb 6/10/2015 14:36'!
-test08RuleParameters
-	self should: (OMeta2StepByStepExample matchAll: 'looking for test text' with: #testRuleParameters) = 'looking for test text'! !
-
-!OMeta2StepByStepTests methodsFor: 'test case' stamp: 'pb 6/10/2015 15:00'!
-test10FromTo
-	self should: (OMeta2StepByStepExample matchAll: '/* finding */ the test text...' with: #testFromTo) = #($f $i $n $d $i $n $g $  $t $e $x $t $. $. $.) asOrderedCollection! !
-
-!SHTextStylerOMeta2 methodsFor: 'private' stamp: 'pb 9/3/2017 19:21:52'!
-attributesFor: aSymbol
-	^ useSmalltalkStyler
-		ifTrue: [ smalltalkFallbackStyler class attributesFor: aSymbol ]
-		ifFalse: [ self class attributesFor: aSymbol ].! !
-
-!SHTextStylerOMeta2 methodsFor: 'private' stamp: 'pb 5/2/2020 23:32:03'!
-classOrMetaClass: anObject
-	"FIXME - this is rather inefficient but if we don't determine which styler to use here (via #pvtExtractRangesFromSource), the first time we view pretty printed code it will use the wrong styler"
-	self pvtExtractRangesFromSource.
-	^ useSmalltalkStyler
-		ifTrue: [ smalltalkFallbackStyler classOrMetaClass: anObject ]
-		ifFalse: [ self ].! !
-
-!SHTextStylerOMeta2 methodsFor: 'private' stamp: 'pb 6/17/2015 00:33'!
-disableFormatAndConvert! !
-
-!SHTextStylerOMeta2 methodsFor: 'private' stamp: 'MO 3/26/2024 18:31:14'!
-privateAutoHighlight! !
-
-!SHTextStylerOMeta2 methodsFor: 'private' stamp: 'MO 3/26/2024 18:31:40'!
-privateConvertAssignmentsOffset: delta! !
-
-!SHTextStylerOMeta2 methodsFor: 'private' stamp: 'pb 6/17/2015 00:31'!
-privateFormatAndConvert! !
-
-!SHTextStylerOMeta2 methodsFor: 'private' stamp: 'MO 3/27/2024 20:50:37'!
-privateStyle
-	| ranges |
-	ranges := self pvtExtractRangesFromSource.
-	ranges ifNil: [
-		ranges := SHParserST80 new
-		classOrMetaClass: Object;
-		source: (textModel actualContents asString);
-		parse;
-		ranges
-				].
-	ranges ifNotNil: [
-		[
-		self
-			setAttributesIn: formattedText
-			fromRanges: ranges
-			in: nil
-		] on: Error do: []. 
-			].! !
-
-!SHTextStylerOMeta2 methodsFor: 'private' stamp: 'MO 3/26/2024 18:44:54'!
-pvtExtractRangesFromSource
-	useSmalltalkStyler := true.
-	"self halt."
-	^ formattedText ifNotNil: [
-		(self class rangeParserClass extractRangesFromSmalltalkSourceCode: formattedText) ifNotNil: [ :useRanges |
-			useSmalltalkStyler := false.
-			useRanges ]] ifNil: [nil].! !
-
-!SHTextStylerOMeta2 methodsFor: 'private' stamp: 'MO 3/26/2024 18:32:31'!
-setAttributesIn: aText fromRanges: ranges in: anInterval
-	"modified by jmv to keep existing attributes if they answer true to #isParagraphAttribute"
-	| attributes defaultAttributes paragraphAttributes attr newRuns newValues lastAttr lastCount beginning chunkRuns end |
-	anInterval
-		ifNil: [
-			beginning := 1.
-			end := aText size ]
-		ifNotNil: [
-			beginning := anInterval first.
-			end := anInterval last ].
-	defaultAttributes := self attributesFor: #default.
-	paragraphAttributes := Array new: end - beginning + 1.
-	1
-		to: paragraphAttributes size
-		do: [ :i |
-			paragraphAttributes
-				at: i
-				put:
-					((aText attributesAt: i + beginning - 1) select: [ :each |
-						each isParagraphAttribute ]) ].
-	attributes := Array new: end - beginning + 1.
-	1
-		to: attributes size
-		do: [ :i |
-			attributes
-				at: i
-				put: (paragraphAttributes at: i) , defaultAttributes ].
-	ranges do: [ :range |
-		(attr := self attributesFor: range rangeType) ifNotNil: [
-			range start
-				to: range end
-				do: [ :i |
-					attributes
-						at: i
-						put: (paragraphAttributes at: i) , attr ]]].
-	newRuns := OrderedCollection new.
-	newValues := OrderedCollection new.
-	1
-		to: attributes size
-		do: [ :i |
-			attr := attributes at: i.
-			i = 1
-				ifTrue: [
-					newRuns add: 1.
-					lastCount := 1.
-					lastAttr := newValues add: attr ]
-				ifFalse: [
-					attr == lastAttr
-						ifTrue: [
-							lastCount := lastCount + 1.
-							newRuns
-								at: newRuns size
-								put: lastCount ]
-						ifFalse: [
-							newRuns add: 1.
-							lastCount := 1.
-							lastAttr := newValues add: attr ]]].
-	chunkRuns := (RunArray
-		runs: newRuns
-		values: newValues) coalesce.
-	aText
-		basicReplaceAttributesFrom: beginning
-		to: end
-		with: chunkRuns.! !
-
-!SHTextStylerOMeta2 methodsFor: 'private' stamp: 'pb 5/2/2020 14:29:41'!
-workspace: inst
-	"Needed for Debugger>>shoutAboutToStyle:"
-	self flag: #FIXME.
-	^ nil.! !
-
-!SHTextStylerOMeta2 methodsFor: 'initialization' stamp: 'pb 9/3/2017 19:21:19'!
-initialize
-	super initialize.
-	useSmalltalkStyler := false.
-	smalltalkFallbackStyler := SHTextStylerST80 new.! !
-
-!SHTextStylerOMeta2 methodsFor: 'styling' stamp: 'MO 3/26/2024 18:30:37'!
-getReady! !
-
-!SHTextStylerOMeta2 methodsFor: 'styling' stamp: 'MO 3/26/2024 18:30:56'!
-parseText! !
-
-!SHTextStylerOMeta2 class methodsFor: 'accessing' stamp: 'pb 5/1/2020 19:13:39'!
-rangeParserClass
-	^ OMeta2ExtendedRuleParser.! !
-
-!SHTextStylerOMeta2 class methodsFor: 'private' stamp: 'pb 6/17/2015 00:15'!
-attributeArrayForColor: aColorOrNil emphasis: anEmphasisSymbolOrArrayorNil
-	"Answer a new Array containing any non nil TextAttributes specified"
-	| answer emphArray |
-	answer := #().
-	aColorOrNil ifNotNil: [ answer := answer , {TextColor color: aColorOrNil} ].
-	anEmphasisSymbolOrArrayorNil ifNotNil: [
-		emphArray := anEmphasisSymbolOrArrayorNil isSymbol
-			ifTrue: [ {anEmphasisSymbolOrArrayorNil} ]
-			ifFalse: [ anEmphasisSymbolOrArrayorNil ].
-		emphArray do: [ :each |
-			each ~= #normal ifTrue: [ answer := answer , {TextEmphasis perform: each} ]]].
-	^ answer.! !
-
-!SHTextStylerOMeta2 class methodsFor: 'private' stamp: 'pb 4/22/2020 02:50:53'!
-attributesFor: aSymbol
-	^ (textAttributes ifNil: [ textAttributes := self initialTextAttributes ])
-		at: aSymbol
-		ifAbsent:
-			(self
-				attributeArrayForColor: Color black
-				emphasis: nil).! !
-
-!SHTextStylerOMeta2 class methodsFor: 'private' stamp: 'pb 5/23/2018 01:53:53'!
-initialTextAttributes
-	"emphasis can be bold, italic, underlined... what about outline & strikethrough?"
-	false
-		ifTrue: [ | attrArray color dict element emphasis styleTable |
-			"FIXME - at some point want to finish integrating with themes rather than the hard-coded approach currently being used..."
-			styleTable := Theme current generateShoutConfig.
-			dict := Dictionary new.
-			styleTable do: [ :each |
-				element := each first.
-				color := each
-					at: 2
-					ifAbsent: nil.
-				color := color ifNotNil: [ Color colorFrom: color ].
-				emphasis := each
-					at: 3
-					ifAbsent: nil.
-				attrArray := self
-					attributeArrayForColor: color
-					emphasis: emphasis.
-				attrArray notEmpty ifTrue: [
-					dict
-						at: element
-						put: attrArray ]].
-			^ dict ]
-		ifFalse: [ "keys: #nil->keywords (true/false/nil)
-			#tempVar->inst vars
-			#comment->/* */ and // comments
-			#blockStartN->block nesting level
-			#keyword->rules & parms
-			#blockArg->arity (*+?)/lookahead (&~)
-			#blockTempVar->apply/rule name
-			#text->'string'
-			#stringSymbol->token
-			#character->$c and ``abc''
-			#patternArg->semantic action/predicate
-			#number->123
-			#externalFunctionCallingConvention->squeak code"
-			^ Dictionary new
-				addAll:
-					{
-						#nil ->
-							(self
-								attributeArrayForColor: Color red muchDarker
-								emphasis: nil). 
-						#tempVar ->
-							(self
-								attributeArrayForColor: Color gray muchDarker
-								emphasis: #italic). 
-						#blockStart1 ->
-							(self
-								attributeArrayForColor:
-									(Color
-										r: 0.6
-										g: 0.6
-										b: 0.6)
-								emphasis: nil). 
-						#blockStart2 ->
-							(self
-								attributeArrayForColor:
-									(Color
-										r: 0.45
-										g: 0.45
-										b: 0.45)
-								emphasis: nil). 
-						#blockStart3 ->
-							(self
-								attributeArrayForColor:
-									(Color
-										r: 0.3
-										g: 0.3
-										b: 0.3)
-								emphasis: nil). 
-						#blockStart4 ->
-							(self
-								attributeArrayForColor:
-									(Color
-										r: 0.15
-										g: 0.15
-										b: 0.15)
-								emphasis: nil). 
-						#blockStart5 ->
-							(self
-								attributeArrayForColor:
-									(Color
-										r: 0.0
-										g: 0.0
-										b: 0.0)
-								emphasis: nil). 
-						#default ->
-							(self
-								attributeArrayForColor: Color black
-								emphasis: nil). 
-						#comment ->
-							(self
-								attributeArrayForColor: Color green
-								emphasis: #italic). 
-						#keyword ->
-							(self
-								attributeArrayForColor: Color blue lighter
-								emphasis: #bold). 
-						#blockArg ->
-							(self
-								attributeArrayForColor: Color orange lighter
-								emphasis: #bold). 
-						#blockTempVar ->
-							(self
-								attributeArrayForColor: Color blue
-								emphasis: nil). 
-						#text ->
-							(self
-								attributeArrayForColor: Color blue
-								emphasis: #bold). 
-						#stringSymbol ->
-							(self
-								attributeArrayForColor: Color blue muchDarker
-								emphasis: #bold). 
-						#symbol ->
-							(self
-								attributeArrayForColor: Color blue darker
-								emphasis: #bold). 
-						#character ->
-							(self
-								attributeArrayForColor: Color red muchDarker
-								emphasis: nil). 
-						#patternArg ->
-							(self
-								attributeArrayForColor: Color cyan muchDarker
-								emphasis: nil). 
-						#number ->
-							(self
-								attributeArrayForColor: Color purple
-								emphasis: nil). 
-						#externalFunctionCallingConvention ->
-							(self
-								attributeArrayForColor: Color cyan veryMuchDarker
-								emphasis: nil)
-					};
-				yourself ].! !
-
-!SHTextStylerOMeta2 class methodsFor: 'private' stamp: 'pb 6/18/2020 02:35:14'!
-privateResetTextAttributes
-	textAttributes := nil! !
-
-!SHTextStylerOMeta2 class methodsFor: 'private-development' stamp: 'pb 6/17/2015 01:09'!
-resetAttributes
-	textAttributes := nil! !
-
-!SHTextStylerOtherOMeta2 methodsFor: 'private' stamp: 'pb 4/25/2020 04:01:29'!
-privateStyle
-	| ranges |
-	useSmalltalkStyler := true.
-	ranges := self class rangeParserClass extractRangesFromSmalltalkSourceCode: formattedText.
-	ranges ifNil: [ | idx |
-		useSmalltalkStyler := false.
-		idx := formattedText indexOf: Character lf.
-		ranges := idx > 0
-			ifTrue: [
-				{
-					SHRange
-						start: 1
-						end: idx - 1
-						type: #bold. 
-					SHRange
-						start: idx
-						end: formattedText size
-						type: #normal
-				} ]
-			ifFalse: [
-				{
-					SHRange
-						start: 1
-						end: formattedText size
-						type: #error
-				} ]].
-	ranges ifNotNil: [
-		self
-			setAttributesIn: formattedText
-			fromRanges: ranges
-			in: nil ].! !
-
-!SHTextStylerOtherOMeta2 class methodsFor: 'private' stamp: 'pb 9/3/2017 18:32:05'!
-initialTextAttributes
-	"emphasis can be bold, italic, underlined... what about outline & strikethrough?"
+	tree := self demoTree.
 	^ Dictionary new
 		
-			at: #bold
-			put:
-				(self
-					attributeArrayForColor: Color black
-					emphasis: #bold);
+			at: #depth
+			put: tree depth;
 		
-			at: #default
-			put:
-				(self
-					attributeArrayForColor: Color black
-					emphasis: nil);
-		
-			at: #error
-			put:
-				(self
-					attributeArrayForColor: Color red
-					emphasis: nil);
+			at: #sum:
+			put: tree sum;
 		yourself.! !
 
-!SHTextStylerOtherOMeta2 class methodsFor: 'as yet unclassified' stamp: 'pb 5/1/2020 19:13:47'!
-rangeParserClass
-	^ OMeta2ExtendedRuleParser.! !
+!OMeta2TreeExample class methodsFor: 'as yet unclassified' stamp: 'pb 5/23/2015 16:12'!
+demoTree
+	^ OMeta2TreeNodeExample new
+		left:
+			(OMeta2TreeNodeExample new
+				left:
+					(OMeta2TreeLeafExample new
+						value: 3;
+						yourself);
+				right:
+					(OMeta2TreeNodeExample new
+						left: OMeta2TreeLeafExample new;
+						right:
+							(OMeta2TreeNodeExample new
+								left: OMeta2TreeLeafExample new;
+								right: OMeta2TreeLeafExample new;
+								yourself);
+						yourself);
+				yourself);
+		right:
+			(OMeta2TreeNodeExample new
+				left:
+					(OMeta2TreeLeafExample new
+						value: 5;
+						yourself);
+				right: OMeta2TreeEmptyExample new yourself;
+				yourself);
+		yourself.! !
+
+!OMeta2TreeEmptyExample methodsFor: 'as yet unclassified' stamp: 'pb 5/23/2015 16:25'!
+unapply
+	^ #(#Empty ).! !
+
+!OMeta2TreeLeafExample methodsFor: 'as yet unclassified' stamp: 'pb 5/23/2015 16:24'!
+unapply
+	^ {#Leaf. value.}! !
+
+!OMeta2TreeLeafExample methodsFor: 'as yet unclassified' stamp: 'pb 5/23/2015 15:31'!
+value: aNumber
+	value := aNumber! !
+
+!OMeta2TreeLeafExample methodsFor: 'initialization' stamp: 'pb 5/23/2015 15:44'!
+initialize
+	value := 1! !
+
+!OMeta2TreeNodeExample methodsFor: 'as yet unclassified' stamp: 'pb 5/23/2015 15:25'!
+left: anObject
+	leftTree := anObject! !
+
+!OMeta2TreeNodeExample methodsFor: 'as yet unclassified' stamp: 'pb 5/23/2015 15:25'!
+right: anObject
+	rightTree := anObject! !
+
+!OMeta2TreeNodeExample methodsFor: 'as yet unclassified' stamp: 'pb 5/23/2015 16:24'!
+unapply
+	^ {#Node. leftTree unapply. rightTree unapply.}! !
+
+!SyntaxTreeNode methodsFor: 'printing' stamp: 'pb 10/15/2017 19:36:10'!
+printOn: aStream
+	| title |
+	title := self class name.
+	aStream
+		nextPutAll:
+			(title first isVowel
+				ifTrue: [ 'an ' ]
+				ifFalse: [ 'a ' ]);
+		nextPutAll: title;
+		nextPut: $(;
+		print: node;
+		nextPut: $).! !
+
+!SyntaxTreeNode methodsFor: 'accessing' stamp: 'pb 6/13/2015 19:10'!
+at: key
+	^ properties at: key.! !
+
+!SyntaxTreeNode methodsFor: 'accessing' stamp: 'pb 6/13/2015 19:09'!
+at: key put: value
+	^ properties
+		at: key
+		put: value.! !
+
+!SyntaxTreeNode methodsFor: 'accessing' stamp: 'pb 6/13/2015 18:32'!
+node
+	^ node! !
+
+!SyntaxTreeNode methodsFor: 'accessing' stamp: 'pb 6/12/2015 21:18'!
+node: aNode
+	node := aNode! !
+
+!SyntaxTreeNode methodsFor: 'accessing' stamp: 'pb 6/13/2015 19:09'!
+properties: propColl
+	propColl do: [ :prop |
+		self
+			at: prop key
+			put: prop value ].! !
+
+!SyntaxTreeNode methodsFor: 'adding' stamp: 'pb 6/12/2015 21:15'!
+addChild: aNode
+	children add: aNode! !
+
+!SyntaxTreeNode methodsFor: 'adding' stamp: 'pb 6/13/2015 02:21'!
+addChildren: nodes
+	nodes do: [ :curNode |
+		children add: curNode ].! !
+
+!SyntaxTreeNode methodsFor: 'converting' stamp: 'pb 6/14/2015 02:42'!
+asArray
+	^ self collect: [:ea| ea]! !
+
+!SyntaxTreeNode methodsFor: 'enumerating' stamp: 'pb 6/14/2015 02:54'!
+childrenDo: aBlock
+	"Call aBlock for each direct child"
+	children do: aBlock.! !
+
+!SyntaxTreeNode methodsFor: 'enumerating' stamp: 'pb 6/8/2019 18:21:51'!
+collect: aBlock
+	"Recurse the tree depth-first collecting the result of calling aBlock for each element"
+	^ self
+		depthFirstCollect: aBlock
+		with: self.! !
+
+!SyntaxTreeNode methodsFor: 'enumerating' stamp: 'pb 6/8/2019 18:22:33'!
+do: aBlock
+	"Recurse the tree depth-first calling aBlock for each element"
+	^ self
+		depthFirstDo: aBlock
+		with: self.! !
+
+!SyntaxTreeNode methodsFor: 'initialization' stamp: 'pb 6/13/2015 01:52'!
+initialize
+	super initialize.
+	properties := Dictionary new.
+	children := OrderedCollection new.! !
+
+!SyntaxTreeNode methodsFor: 'private' stamp: 'pb 6/14/2015 01:51'!
+children
+	^ children! !
+
+!SyntaxTreeNode methodsFor: 'private' stamp: 'pb 6/8/2019 18:21:51'!
+depthFirstCollect: aBlock with: aNode
+	"Recurse the tree depth-first collecting the result of calling aBlock for each element"
+	| results |
+	results := OrderedCollection new.
+	results add: (aBlock value: aNode).
+	aNode childrenDo: [ :cnode |
+		results addAll:
+			(self
+				depthFirstCollect: aBlock
+				with: cnode) ].
+	^ results.! !
+
+!SyntaxTreeNode methodsFor: 'private' stamp: 'pb 6/8/2019 18:22:33'!
+depthFirstDo: aBlock with: aNode
+	"Recurse the tree depth-first calling aBlock for each element"
+	aBlock value: aNode.
+	aNode childrenDo: [ :cnode |
+		self
+			depthFirstDo: aBlock
+			with: cnode ].! !
+
+!SyntaxTreeNode methodsFor: 'private' stamp: 'pb 6/16/2015 17:23'!
+properties
+	^ properties! !
+
+!SyntaxTreeNode class methodsFor: 'instance creation' stamp: 'pb 6/13/2015 02:14'!
+node: aNode
+	^ (self
+		new)
+		node: aNode;
+		yourself.! !
+
+!SyntaxTreeNode class methodsFor: 'private' stamp: 'pb 6/14/2015 02:01'!
+testTree
+	| child node |
+	node := self node: 1.
+	child := self node: 2.
+	5
+		to: 7
+		do: [ :idx | | gChild |
+			gChild := self node: idx.
+			gChild addChild: (self node: idx * 10).
+			child addChild: gChild ].
+	node addChild: child.
+	child := self node: 3.
+	8
+		to: 10
+		do: [ :idx |
+			child addChild: (self node: idx) ].
+	node addChild: child.
+	child := self node: 4.
+	11
+		to: 13
+		do: [ :idx |
+			child addChild: (self node: idx) ].
+	node addChild: child.
+	^ node.! !
 
 !OM2Failer methodsFor: 'initialization' stamp: 'aw 2/16/2009 14:23'!
 initialize
@@ -2658,10 +2152,23 @@ symbolLiteral =
 	// TODO: make this accept, e.g., #foo:bar:
 	"#" nsName:s -> [{#App. #exactly. s storeString}]! !
 
-!OMeta2RuleParser methodsFor: 'private' stamp: 'pb 5/22/2015 19:07'!
-tokenSugar =
-
-	token('"') (~$" char)*:xs $" -> [{#App. #token. (String withAll: xs) storeString}]! !
+!OMeta2RuleParser methodsFor: 'private' stamp: 'MO 10/13/2024 20:53:32'!
+tokenSugar
+	| temp1 |
+	^ true ifTrue: [
+		self
+			privateOMetaApply: #token
+			withArgument: '"'.
+		temp1 := self pvtOMetaMany: [
+			self pvtOMetaNot: [
+				self
+					privateOMetaApply: #exactly
+					withArgument: $" ].
+			self privateOMetaApply: #char ].
+		self
+			privateOMetaApply: #exactly
+			withArgument: $".
+		{#App. #token. (UnicodeString withAll: temp1) storeString} ].! !
 
 !OMeta2RuleParser methodsFor: 'initialization' stamp: 'aw 2/18/2009 15:04'!
 initialize
@@ -3166,585 +2673,6 @@ unit =
 	byteArrayLit
 |	backtickExpr
 |	^ unit! !
-
-!OMeta2Debug methodsFor: 'initialization' stamp: 'pb 10/1/2017 15:26:31'!
-initialize
-	super initialize.
-	om2Eos := 0.
-	om2ApplyPc := Dictionary new.
-	om2ApplyWithArgsPc := Dictionary new.
-	om2Trans := Dictionary new.
-	om2TransId := 0.
-	om2TraceLog := OrderedCollection new.! !
-
-!OMeta2Debug methodsFor: 'ometa grammar' stamp: 'pb 5/5/2020 08:22:32'!
-privateOMetaApply: aRule
-	input class = OM2EndOfStream ifTrue: [
-		om2Eos > 100000
-			ifTrue: [ OMeta2DebugError new signal: 'Infinite recursion detected'
-				"There's a good possibility that there is a rule with optional arity (i.e. using * and/or ?) that is being matched even though we are at the end of the input stream." ]
-			ifFalse: [ om2Eos := om2Eos + 1 ]].
-	om2ApplyPc
-		at: aRule
-		put:
-			(om2ApplyPc
-				at: aRule
-				ifAbsentPut: [ 0 ]) + 1.
-	^ super privateOMetaApply: aRule.
-! !
-
-!OMeta2Debug methodsFor: 'ometa grammar' stamp: 'pb 5/5/2020 08:22:46'!
-privateOMetaApply: aRule withArgs: args
-	om2ApplyWithArgsPc
-		at: aRule
-		put:
-			(om2ApplyWithArgsPc
-				at: aRule
-				ifAbsentPut: [ 0 ]) + 1.
-	^ super
-		privateOMetaApply: aRule
-		withArgs: args.! !
-
-!OMeta2Debug methodsFor: 'ometa grammar' stamp: 'pb 5/5/2020 08:27:25'!
-seq
-	| xs |
-	xs := self privateOMetaApply: #anything.
-	[
-	xs do: [ :x |
-		" may want to inline #apply:withArgs: below as an
-		  optimization, since this rule gets used a lot "
-		self
-			privateOMetaApply: #exactly
-			withArgument: x ].
-	^ xs ] on: Exception
-		do: [ :e |
-			(xs isKindOf: Collection)
-				ifTrue: [ e pass
-					"no idea what the problem is" ]
-				ifFalse: [ OMeta2DebugError new signal: 'Not a sequence: ' , xs asString
-					"we were probably passed in a character, number, etc..." ]].! !
-
-!OMeta2Debug methodsFor: 'private' stamp: 'pb 4/30/2020 23:59:02'!
-ometaDebugPc
-	^ Dictionary new
-		
-			at: 'applyPc'
-			put: om2ApplyPc;
-		
-			at: 'applyWithArgsPc'
-			put: om2ApplyWithArgsPc;
-		yourself.! !
-
-!OMeta2Debug methodsFor: 'private' stamp: 'pb 4/30/2020 23:59:33'!
-ometaDebugRoot: aRule
-	om2DebugRoot := aRule! !
-
-!OMeta2Debug methodsFor: 'private' stamp: 'pb 5/1/2020 00:18:32'!
-pvtOMetaDebugFinishTrans: name id: transId
-	self pvtOMetaDebugShouldTrace ifTrue: [
-		(om2Trans at: transId)
-			
-				at: 'matched'
-				put: true;
-			
-				at: 'pos'
-				put: self ometaPositionInStream ].! !
-
-!OMeta2Debug methodsFor: 'private' stamp: 'pb 4/30/2020 23:58:16'!
-pvtOMetaDebugLogTrace
-	om2TraceLog add: om2Trans.
-	om2Trans := Dictionary new.! !
-
-!OMeta2Debug methodsFor: 'private' stamp: 'pb 4/30/2020 23:58:33'!
-pvtOMetaDebugShouldTrace
-	^ false! !
-
-!OMeta2Debug methodsFor: 'private' stamp: 'pb 5/1/2020 00:18:39'!
-pvtOMetaDebugStartTrans: name
-	self pvtOMetaDebugShouldTrace ifTrue: [
-		om2TransId := om2TransId + 1.
-		om2Trans
-			at: om2TransId
-			put:
-				(Dictionary new
-					
-						at: 'rule'
-						put: name;
-					
-						at: 'matched'
-						put: false;
-					
-						at: 'pos'
-						put: self ometaPositionInStream;
-					yourself).
-		^ om2TransId ].! !
-
-!OMeta2Debug class methodsFor: 'accessing' stamp: 'pb 6/12/2015 06:20'!
-lastMatcher
-	^ LastMatcher! !
-
-!OMeta2Debug class methodsFor: 'private' stamp: 'pb 5/10/2020 14:19:09'!
-matchStream: aReadStream with: aRule withArgs: args withPlaybackDebugging: debugging
-	| input matcher ans |
-	input := OM2LazyStream
-		for: aReadStream
-		withPos: 1.
-	matcher := self new initOMetaInputStream: input.
-	matcher ometaDebugRoot: aRule.
-	LastMatcher := matcher.
-	ans := self
-		pvtMatchOMetaStream: input
-		matcher: matcher
-		with: aRule
-		withArgs: args
-		withPlaybackDebugging: debugging.
-	Transcript
-		show: matcher ometaDebugPc asString;
-		finishEntry.
-	^ ans.! !
-
-!OMeta2Debug class methodsFor: 'private' stamp: 'pb 2/3/2016 21:33'!
-ometa2RuleTranslatorClass
-	^ OMeta2DebugRuleTranslator.! !
-
-!OMeta2DebugExample methodsFor: 'as yet unclassified' stamp: 'pb 6/20/2016 22:18'!
-debugForm =
-	{ 'testing' }! !
-
-!OMeta2DebugExample methodsFor: 'as yet unclassified' stamp: 'pb 6/12/2015 14:44'!
-infiniteRecursion  = irRule*! !
-
-!OMeta2DebugExample methodsFor: 'as yet unclassified' stamp: 'pb 6/12/2015 14:46'!
-initialize
-	super initialize.
-	delimRow := Character lf.
-	delimCol := $,.! !
-
-!OMeta2DebugExample methodsFor: 'as yet unclassified' stamp: 'pb 6/12/2015 14:46'!
-irField = <(~(exactly(delimCol) | exactly(delimRow)) anything)*>:field! !
-
-!OMeta2DebugExample methodsFor: 'as yet unclassified' stamp: 'pb 6/12/2015 14:46'!
-irRule = irField (exactly(delimCol) irField)* exactly(delimRow)?! !
-
-!OMeta2DebugExample methodsFor: 'as yet unclassified' stamp: 'pb 6/12/2015 14:31'!
-notASequence =
-	seq($a)! !
-
-!OMeta2DebugExample methodsFor: 'as yet unclassified' stamp: 'pb 5/1/2020 00:02:56'!
-pvtOMetaDebugShouldTrace
-	^ true.! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:20:27'!
-application =
-	@<"^" name:rule>:superIdx args:as	-> [(self pvtNewNode: #SuperApp)
-				properties: {#op -> rule.
-							#args -> as.
-							self pvtNewRange: superIdx type: #blockTempVar};
-				yourself]
-|	@<name:grm $. nsName:rule>:app1Idx	 @<args:as>:app2Idx -> [(self pvtNewNode: #App)
-				properties: {#op -> #pvtOMetaForeignParser.
-					#parm -> grm.
-					#huh1 -> ('#', rule) asSymbol.
-					#huh2 -> as.
-					self pvtNewRange: app1Idx type: #blockTempVar with: app2Idx type: #externalFunctionCallingConvention}]
-|	@<name:rule>:app1Idx @<args:as>:app2Idx					-> [(self pvtNewNode: #App)
-				properties: { #op -> rule.
-					#parm -> as.
-					self pvtNewRange: app1Idx type: #blockTempVar with: app2Idx type: #externalFunctionCallingConvention}]! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 02:02:32'!
-args =
-	/* FIXME
-	$( (
-	listOf(#squeakArgExprOrWrappedInnerBlock, ',')
-	|  listOf(#squeakExpression, '.')
-	):ans ")" -> [ans]
-	*/
-	$( listOf(#squeakArgExprOrWrappedInnerBlock, ','):ans ")" -> [ans] // new syntax
-|	$( listOf(#squeakExpression, '.'):ans ")" -> ["Transcript show: 'legacy listOf syntax with args: ', ans asString; finishEntry." ans] // legacy syntax
-|	~$( -> [#()]! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:20:34'!
-characterLiteral =
-	@<spaces $$ char:c>:cIdx -> [(self pvtNewNode: #App) properties: { #op -> #exactly.
-																#parm -> c storeString.
-																self pvtNewRange: cIdx type: #character}]! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:20:38'!
-characters =
-	@<"``" (~($' $') char)*:xs $' $'>:charIdx -> [(self pvtNewNode: #App) properties:
-							{ #op -> #seq.
-							#parm -> (String withAll: xs) storeString.
-							self pvtNewRange:  charIdx type: #character}]! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:20:41'!
-expr =
-	// Wrap the sub-expressions with an 'or'.  If it's not needed, we'll optimize it away later.
-	// FIXME - how to best highlight OR...
-	listOf(#expr4, '|'):xs -> [(self pvtNewNode: #Or) addChildren: xs]! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 14:19:01'!
-expr1 =
-	// Handle any syntactic sugar (brackets etc) and the rest of the expression
-	@<(keyword('true') | keyword('false') | keyword('nil')):lit>:litIdx
-						-> [(self pvtNewNode: #App) properties: {#op -> #exactly. #parm -> lit. self pvtNewRange: litIdx type: #nil}]
-|	application
-|	semanticAction
-|	semanticPredicate
-|	characters
-|	tokenSugar
-|	stringLiteral
-|	symbolLiteral
-|	numberLiteral
-|	characterLiteral
-|	@<"{">:blkStart [self pvtBlockEnter]  expr:e @<"}">:blkEnd
-					-> [(self pvtNewNode: #Form) properties: {#op -> e.
-											self pvtNewRange: blkStart and: blkEnd type: self pvtBlockLevelAndLeave}]
-|	@<"<">:blkStart [self pvtBlockEnter]  expr:e @<">">:blkEnd
-				 	-> [(self pvtNewNode: #ConsBy) properties: {#op -> e.
-											self pvtNewRange: blkStart and: blkEnd type: self pvtBlockLevelAndLeave}]
-|	@<"@<">:blkStart [self pvtBlockEnter] expr:e @<">">:blkEnd
-				 	-> [(self pvtNewNode: #IdxConsBy) properties: {#op -> e.
-											self pvtNewRange: blkStart and: blkEnd type: self pvtBlockLevelAndLeave}]
-|	@<"(">:blkStart expr:e @<")">:blkEnd -> [e] // FIXME - syntax highlighting! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:21:06'!
-expr2 =
-	// Handle lookahead
-	@<"~">:xIdx expr2:x -> [(self pvtNewNode: #Not) properties: {#op -> x. self pvtNewRange: xIdx type: #blockArg}] 
-|	@<"&">:xIdx expr2:x -> [(self pvtNewNode: #Lookahead) properties: {#op -> x. self pvtNewRange: xIdx type: #blockArg}] 
-|	expr1! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:21:19'!
-expr3 =
-	// Handle arity and variable assignment
-	expr2:x optIter(x):x
-		(	$: @<nsName:n>:tmpIdx [temps add: n] -> [(self pvtNewNode: #Set) properties: {#op -> n. #parm -> x. self pvtNewRange: tmpIdx type: #tempVar}]
-		|	empty						-> [x]
-		)
-|	":" nsName:n [temps add: n] -> [(self pvtNewNode: #Set) properties: {#op -> n};
-										addChild: ((self pvtNewNode: #App) properties: {#op -> #anything})]! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:21:22'!
-expr4 =
-	// Wrap related rule sub-expressions with an 'and'.  If it's not needed, we'll optimize it away later
-	expr3*:xs -> [(self pvtNewNode: #And) addChildren: xs]! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:21:30'!
-initialize
-	super initialize.
-	ast := self pvtNewNode: #rule.
-	blockLevel := 0.
-	curNode := ast.
-	curNode properties at: #comments put: OrderedCollection new.
-	temps := IdentitySet new.! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/1/2020 19:12:57'!
-keyword :xs =
-	token(xs) ~letterOrDigit -> [xs]! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/1/2020 19:12:57'!
-name =
-	spaces nsName! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/1/2020 19:12:57'!
-nameFirst =
-	letter! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/1/2020 19:12:57'!
-nameRest =
-	nameFirst | digit! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 01:25:04'!
-nsName =
-	firstAndRest(#nameFirst, #nameRest):xs -> [(String withAll: xs) asSymbol]
-|	$_ -> [#anything]
-! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:21:34'!
-numberLiteral =
-	@<spaces ($- spaces -> [-1] | empty -> [1]):sign digit+:ds>:numIdx
-		-> [(self pvtNewNode: #App) properties: {#op -> #exactly.
-				#parm -> (sign * (String withAll: ds) asNumber) storeString.
-				self pvtNewRange: numIdx type: #number}]! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:21:38'!
-ometaRule =
-	&(^space* nsName):n rulePart(n):x ("," rulePart(n))*:xs spaces end
-		-> [ curNode := (curNode node: #Rule) properties: {#temps -> temps asSortedCollection.
-					#n -> n};
-					addChild: ((self pvtNewNode: #Or) addChild: x; addChildren: xs)]! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:21:51'!
-optIter :x =
-	@<"*">:arManyIdx		-> [(self pvtNewNode: #Many) properties: {#parm -> x.
-																	self pvtNewRange: arManyIdx type: #blockArg}]
-|	@<"+">:arMany1Idx		-> [(self pvtNewNode: #Many1) properties: {#parm -> x.
-																	self pvtNewRange: arMany1Idx type: #blockArg}]
-|	@<"?">:arOptIdx ~$[	-> [(self pvtNewNode: #Opt) properties: {#parm -> x.
-																	self pvtNewRange: arOptIdx type: #blockArg}]
-|	empty	-> [x]! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/1/2020 19:17:20'!
-pvtBlockEnter
-	blockLevel := blockLevel+1.! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/1/2020 19:16:29'!
-pvtBlockLevelAndLeave
-	| retVal |
-	retVal := blockLevel caseOf: {
-		[ 1 ] -> [ #blockStart1 ].
-		[ 2 ] -> [ #blockStart2 ].
-		[ 3 ] -> [ #blockStart3 ]}
-		 otherwise: [ "Only go up to 4"
-		#blockStart4 ].
-	blockLevel := blockLevel - 1.
-	^ retVal.! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:20:02'!
-pvtNewNode: nodeType
-	^ SyntaxTreeNode node: nodeType.! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 14:20:27'!
-pvtNewRange: rangeAssoc1 and: rangeAssoc2 type: type
-	"Create assoc to be use as a range property.  This currently covers every use case except comments in the space rule."
-	| passoc |
-	passoc := self
-		pvtNewRange: rangeAssoc1
-		type: type.
-	passoc value
-		add:
-			(self
-				pvtNewSHRangeType: type
-				rangeAssoc: rangeAssoc2);
-		yourself.
-	^ passoc.! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 14:20:44'!
-pvtNewRange: rangeAssoc type: type
-	"Create assoc to be use as a range property.  This currently covers every use case except comments in the space rule"
-	^ #rangeIdxList ->
-		(OrderedCollection new
-			add:
-				(self
-					pvtNewSHRangeType: type
-					rangeAssoc: rangeAssoc);
-			yourself).! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 14:20:53'!
-pvtNewRange: rangeAssoc1 type: type1 with: rangeAssoc2 type: type2
-	"Create assoc to be use as a range property.  This currently covers every use case except comments in the space rule"
-	^ #rangeIdxList ->
-		(OrderedCollection new
-			add:
-				(self
-					pvtNewSHRangeType: type1
-					rangeAssoc: rangeAssoc1);
-			add:
-				(self
-					pvtNewSHRangeType: type2
-					rangeAssoc: rangeAssoc2);
-			yourself).! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/1/2020 19:12:57'!
-pvtNewSHRangeType: useType rangeAssoc: rangeAssoc
-	^ SHRange
-		start: rangeAssoc key
-		end: rangeAssoc value - 1
-		type: useType.! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 14:21:11'!
-rulePart :ruleName =
-	[nil]:retVal
-	@<name:n ?[n = ruleName] expr4:b1>:nIdx -> [|| curNode properties: {self pvtNewRange: nIdx type: #keyword}. retVal]
-		(	@<"=">:nIdx2 expr:b2	-> [|| ((curNode properties at: #rangeIdxList) at: 1) end: nIdx2 value. "rangeAssoc" retVal := (self pvtNewNode: #And) addChild: b1; addChild: b2] // nIdx2 is a hack to get to the '='.  Highly non-optimal as we really want params highlighted in a different style anyway
-		|	empty			-> [retVal := curNode addChild: b1]
-		)! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 6/16/2020 11:25:26'!
-ruleProduction =
-
-	"->"! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 6/16/2020 11:25:37'!
-semanticAction =
-	@<ruleProduction? "[">:saIdx1 (squeakExpression:expr|squeakInnerBlock:blk) @<$]>:saIdx2
-		-> [expr
-				ifNil: [(self pvtNewNode: #SemBlkAct) properties: {#op -> blk. self pvtNewRange: saIdx1 and: saIdx2 type: #patternArg}]
-				ifNotNil: [(self pvtNewNode: #SemAct) properties: {#op -> expr. self pvtNewRange: saIdx1 and: saIdx2 type: #patternArg}]]! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:22:06'!
-semanticPredicate =
-	@<"?[">:spIdx1 (squeakExpression:expr|squeakInnerBlock:blk) @<$]>:spIdx2
-		-> [expr
-				ifNil: [(self pvtNewNode: #SemBlkPred) properties: {#op -> blk. self pvtNewRange: spIdx1 and: spIdx2 type: #patternArg}]
-				ifNotNil: [(self pvtNewNode: #SemPred) properties: {#op -> expr. self pvtNewRange: spIdx1 and: spIdx2 type: #patternArg}]]! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/16/2020 21:36:54'!
-space =
-	^space
-	| @<fromTo('/*', '*/')>:longCommentIdx
-		-> [(curNode properties at: #comments) add: (self pvtNewSHRangeType: #comment rangeAssoc: longCommentIdx)]
-	| @<fromToEndOfLine('//')>:commentIdx
-		-> [(curNode properties at: #comments) add: (self pvtNewSHRangeType: #comment rangeAssoc: commentIdx)]
-! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 19:26:27'!
-squeakArgExprOrWrappedInnerBlock =
-
-	[self pvtOMetaGetExternalSmalltalkRecognizerClass]:recog 
-	recog.squeakArgExprOrWrappedInnerBlock:ans spaces -> [ans]! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 19:27:01'!
-squeakExpression =
-
-	@<[self pvtOMetaGetExternalSmalltalkRecognizerClass]:recog
-		recog.squeakExpr:ans>:sqIdx spaces
-			-> [(self pvtNewNode: #Smalltalk) properties: {#parm -> ans.
-				self pvtNewRange: sqIdx type: #externalFunctionCallingConvention}]! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 19:28:47'!
-squeakInnerBlock =
-
-	[self pvtOMetaGetExternalSmalltalkRecognizerClass]:recog
-	@<	recog.squeakInnerBlock:ans>:sqIdx spaces
-			 ->  [(self pvtNewNode: #Smalltalk) properties: {#parm -> ans.
-				self pvtNewRange: sqIdx type: #externalFunctionCallingConvention}]! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:22:21'!
-stringLiteral =
-	@<"'" ($' $' -> [$'] | ~$' char)*:xs $'>:strIdx -> [(self pvtNewNode: #App) properties: 											{#op -> #exactly.
-											 #parm ->  (String withAll: xs) storeString.
-											self pvtNewRange: strIdx type: #text}]! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:22:25'!
-symbolLiteral =
-	// TODO: make this accept, e.g., #foo:bar:
-	@<"#" nsName:s>:symIdx -> [(self pvtNewNode: #App) properties: {
-											#op -> #exactly.
-											#parm -> s storeString.
-											self pvtNewRange: symIdx type: #symbol
-											}]! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:22:28'!
-tokenSugar =
-	@<token('"') (~$" char)*:xs $">:tokIdx -> [(self pvtNewNode: #App) properties: {
-															#op -> #token.
-															#parm -> (String withAll: xs) storeString.
-															self pvtNewRange: tokIdx type: #stringSymbol
-															}]! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'grammar' stamp: 'pb 5/1/2020 19:31:28'!
-rule =
-	squeakRule
-	| ometaRule! !
-
-!OMeta2ExtendedRuleParser methodsFor: 'grammar' stamp: 'pb 5/2/2020 05:22:17'!
-squeakRule =
-	// This isn't OMeta code so we'll handoff to Squeak when the time comes
-	~(^space* nsName expr4 "=") <char*>:squeakCode -> [self pvtNewNode: #Squeak]! !
-
-!OMeta2ExtendedRuleParser class methodsFor: 'extract' stamp: 'pb 5/2/2020 03:26:52'!
-extractRangesFromSmalltalkSourceCode: source
-	^ (self isSmalltalkSourceCode: source) ifFalse: [ | result |
-		result := OrderedCollection new.
-		(self
-			matchAll: source
-			with: #rule
-			ifFail: []) ifNotNil: [:found| found do: [ :ea |
-			self
-				pvtRecurseForRanges: ea
-				into: result ].
-		result sort: [ :a :b |
-			a start < b start ]]].! !
-
-!OMeta2ExtendedRuleParser class methodsFor: 'testing' stamp: 'pb 5/1/2020 19:28:42'!
-isSmalltalkSourceCode: aString
-	^ (self
-		matchAll: aString
-		with: #squeakRule
-		ifFail: [ false ]) = false
-		ifTrue: [ false ]
-		ifFalse: [ true ].! !
-
-!OMeta2ExtendedRuleParser class methodsFor: 'private' stamp: 'pb 5/1/2020 19:12:57'!
-pvtRecurseForRanges: ea into: result
-	ea properties
-		
-			at: #rangeIdxList
-			ifPresent: [ :ranges |
-				result addAll: ranges ];
-		
-			at: #comments
-			ifPresent: [ :ranges |
-				result addAll: ranges ];
-		
-			at: #op
-			ifPresent: [ :op |
-				(op isKindOf: SyntaxTreeNode) ifTrue: [
-					op do: [ :opNode |
-						self
-							pvtRecurseForRanges: opNode
-							into: result ]]];
-		
-			at: #parm
-			ifPresent: [ :parm |
-				(parm isKindOf: SyntaxTreeNode) ifTrue: [
-					parm do: [ :parmNode |
-						self
-							pvtRecurseForRanges: parmNode
-							into: result ]]].
-	^ result.! !
-
-!OMeta2RuleIntrospection methodsFor: 'ometa grammar' stamp: 'pb 4/27/2020 01:56:31'!
-appliesDirectOMetaRule :aRule =
-	// Is aRule directly referenced? (i.e. via apply)
-	(directApply exactly(aRule) anything* -> [self pvtStoreResult: aRule]
-	| (~directApply anything) ({appliesDirectOMetaRule(aRule)} | anything)+
-	| { appliesDirectOMetaRule(aRule) })
-	[result]! !
-
-!OMeta2RuleIntrospection methodsFor: 'ometa grammar' stamp: 'pb 5/3/2020 14:08:04'!
-appliesOMetaRule :aRule =
-	// Is aRule referenced? (i.e. via (super) apply)
-	(anyApply exactly(aRule) anything* -> [self pvtStoreResult: aRule]
-	| (~anyApply anything) ({appliesOMetaRule(aRule)} | anything)+
-	| { appliesOMetaRule(aRule) })
-	[result]! !
-
-!OMeta2RuleIntrospection methodsFor: 'ometa grammar' stamp: 'pb 4/27/2020 01:44:15'!
-referencedOMetaRules =
-	// Return a collection of all rules referenced
-	[result ifNil: [result := Set new]]
-	(anyApply anything:aRule anything* -> [result add: aRule]
-	| (~anyApply anything) ({referencedOMetaRules} | anything)+
-	| { referencedOMetaRules })
-	[result]! !
-
-!OMeta2RuleIntrospection methodsFor: 'private' stamp: 'pb 4/26/2020 19:13:28'!
-anyApply =
-	anything:found ?[#(#App #SuperApp) includes: found]! !
-
-!OMeta2RuleIntrospection methodsFor: 'private' stamp: 'pb 4/26/2020 19:53:44'!
-directApply =
-	anything:found ?[found=#App]! !
-
-!OMeta2RuleIntrospection methodsFor: 'private' stamp: 'pb 4/26/2020 19:08:39'!
-match :findItem =
-	anything:gotItem ?[gotItem=findItem]! !
-
-!OMeta2RuleIntrospection methodsFor: 'private' stamp: 'pb 5/3/2020 14:07:44'!
-nonSuperRuleSendsTo :findRule =
-	{ nonSuperRuleSendsTo(findRule) }
-	| (~(pvtInnerNonSuperRuleSendsTo(findRule)) anything)* pvtInnerNonSuperRuleSendsTo(findRule)! !
-
-!OMeta2RuleIntrospection methodsFor: 'private' stamp: 'pb 4/26/2020 18:48:52'!
-pvtInnerNonSuperRuleSendsTo :findRule =
-	~#SuperApp anything:matchRule ?[matchRule=findRule] -> [findRule]! !
-
-!OMeta2RuleIntrospection methodsFor: 'private' stamp: 'pb 4/26/2020 19:50:14'!
-pvtStoreResult: useResult
-	^ result := useResult.! !
 
 !OMeta2CsvExample methodsFor: 'ometa grammar' stamp: 'pb 5/23/2018 04:11:48'!
 csv =
@@ -4327,234 +3255,1337 @@ sum =
         | {#Leaf anything:v} -> [v]
         | {#Node sum:l sum:r} -> [l + r]! !
 
-!SyntaxTreeNode methodsFor: 'printing' stamp: 'pb 10/15/2017 19:36:10'!
-printOn: aStream
-	| title |
-	title := self class name.
-	aStream
-		nextPutAll:
-			(title first isVowel
-				ifTrue: [ 'an ' ]
-				ifFalse: [ 'a ' ]);
-		nextPutAll: title;
-		nextPut: $(;
-		print: node;
-		nextPut: $).! !
-
-!SyntaxTreeNode methodsFor: 'accessing' stamp: 'pb 6/13/2015 19:10'!
-at: key
-	^ properties at: key.! !
-
-!SyntaxTreeNode methodsFor: 'accessing' stamp: 'pb 6/13/2015 19:09'!
-at: key put: value
-	^ properties
-		at: key
-		put: value.! !
-
-!SyntaxTreeNode methodsFor: 'accessing' stamp: 'pb 6/13/2015 18:32'!
-node
-	^ node! !
-
-!SyntaxTreeNode methodsFor: 'accessing' stamp: 'pb 6/12/2015 21:18'!
-node: aNode
-	node := aNode! !
-
-!SyntaxTreeNode methodsFor: 'accessing' stamp: 'pb 6/13/2015 19:09'!
-properties: propColl
-	propColl do: [ :prop |
-		self
-			at: prop key
-			put: prop value ].! !
-
-!SyntaxTreeNode methodsFor: 'adding' stamp: 'pb 6/12/2015 21:15'!
-addChild: aNode
-	children add: aNode! !
-
-!SyntaxTreeNode methodsFor: 'adding' stamp: 'pb 6/13/2015 02:21'!
-addChildren: nodes
-	nodes do: [ :curNode |
-		children add: curNode ].! !
-
-!SyntaxTreeNode methodsFor: 'converting' stamp: 'pb 6/14/2015 02:42'!
-asArray
-	^ self collect: [:ea| ea]! !
-
-!SyntaxTreeNode methodsFor: 'enumerating' stamp: 'pb 6/14/2015 02:54'!
-childrenDo: aBlock
-	"Call aBlock for each direct child"
-	children do: aBlock.! !
-
-!SyntaxTreeNode methodsFor: 'enumerating' stamp: 'pb 6/8/2019 18:21:51'!
-collect: aBlock
-	"Recurse the tree depth-first collecting the result of calling aBlock for each element"
-	^ self
-		depthFirstCollect: aBlock
-		with: self.! !
-
-!SyntaxTreeNode methodsFor: 'enumerating' stamp: 'pb 6/8/2019 18:22:33'!
-do: aBlock
-	"Recurse the tree depth-first calling aBlock for each element"
-	^ self
-		depthFirstDo: aBlock
-		with: self.! !
-
-!SyntaxTreeNode methodsFor: 'initialization' stamp: 'pb 6/13/2015 01:52'!
+!OMeta2Debug methodsFor: 'initialization' stamp: 'pb 10/1/2017 15:26:31'!
 initialize
 	super initialize.
-	properties := Dictionary new.
-	children := OrderedCollection new.! !
+	om2Eos := 0.
+	om2ApplyPc := Dictionary new.
+	om2ApplyWithArgsPc := Dictionary new.
+	om2Trans := Dictionary new.
+	om2TransId := 0.
+	om2TraceLog := OrderedCollection new.! !
 
-!SyntaxTreeNode methodsFor: 'private' stamp: 'pb 6/14/2015 01:51'!
-children
-	^ children! !
+!OMeta2Debug methodsFor: 'ometa grammar' stamp: 'pb 5/5/2020 08:22:32'!
+privateOMetaApply: aRule
+	input class = OM2EndOfStream ifTrue: [
+		om2Eos > 100000
+			ifTrue: [ OMeta2DebugError new signal: 'Infinite recursion detected'
+				"There's a good possibility that there is a rule with optional arity (i.e. using * and/or ?) that is being matched even though we are at the end of the input stream." ]
+			ifFalse: [ om2Eos := om2Eos + 1 ]].
+	om2ApplyPc
+		at: aRule
+		put:
+			(om2ApplyPc
+				at: aRule
+				ifAbsentPut: [ 0 ]) + 1.
+	^ super privateOMetaApply: aRule.
+! !
 
-!SyntaxTreeNode methodsFor: 'private' stamp: 'pb 6/8/2019 18:21:51'!
-depthFirstCollect: aBlock with: aNode
-	"Recurse the tree depth-first collecting the result of calling aBlock for each element"
-	| results |
-	results := OrderedCollection new.
-	results add: (aBlock value: aNode).
-	aNode childrenDo: [ :cnode |
-		results addAll:
-			(self
-				depthFirstCollect: aBlock
-				with: cnode) ].
-	^ results.! !
+!OMeta2Debug methodsFor: 'ometa grammar' stamp: 'pb 5/5/2020 08:22:46'!
+privateOMetaApply: aRule withArgs: args
+	om2ApplyWithArgsPc
+		at: aRule
+		put:
+			(om2ApplyWithArgsPc
+				at: aRule
+				ifAbsentPut: [ 0 ]) + 1.
+	^ super
+		privateOMetaApply: aRule
+		withArgs: args.! !
 
-!SyntaxTreeNode methodsFor: 'private' stamp: 'pb 6/8/2019 18:22:33'!
-depthFirstDo: aBlock with: aNode
-	"Recurse the tree depth-first calling aBlock for each element"
-	aBlock value: aNode.
-	aNode childrenDo: [ :cnode |
+!OMeta2Debug methodsFor: 'ometa grammar' stamp: 'pb 5/5/2020 08:27:25'!
+seq
+	| xs |
+	xs := self privateOMetaApply: #anything.
+	[
+	xs do: [ :x |
+		" may want to inline #apply:withArgs: below as an
+		  optimization, since this rule gets used a lot "
 		self
-			depthFirstDo: aBlock
-			with: cnode ].! !
+			privateOMetaApply: #exactly
+			withArgument: x ].
+	^ xs ] on: Exception
+		do: [ :e |
+			(xs isKindOf: Collection)
+				ifTrue: [ e pass
+					"no idea what the problem is" ]
+				ifFalse: [ OMeta2DebugError new signal: 'Not a sequence: ' , xs asString
+					"we were probably passed in a character, number, etc..." ]].! !
 
-!SyntaxTreeNode methodsFor: 'private' stamp: 'pb 6/16/2015 17:23'!
-properties
-	^ properties! !
-
-!SyntaxTreeNode class methodsFor: 'instance creation' stamp: 'pb 6/13/2015 02:14'!
-node: aNode
-	^ (self
-		new)
-		node: aNode;
-		yourself.! !
-
-!SyntaxTreeNode class methodsFor: 'private' stamp: 'pb 6/14/2015 02:01'!
-testTree
-	| child node |
-	node := self node: 1.
-	child := self node: 2.
-	5
-		to: 7
-		do: [ :idx | | gChild |
-			gChild := self node: idx.
-			gChild addChild: (self node: idx * 10).
-			child addChild: gChild ].
-	node addChild: child.
-	child := self node: 3.
-	8
-		to: 10
-		do: [ :idx |
-			child addChild: (self node: idx) ].
-	node addChild: child.
-	child := self node: 4.
-	11
-		to: 13
-		do: [ :idx |
-			child addChild: (self node: idx) ].
-	node addChild: child.
-	^ node.! !
-
-!OMeta2TreeExample methodsFor: 'as yet unclassified' stamp: 'pb 5/23/2015 16:18'!
-depth
-	^ OMeta2TreeWalkerExample match: self with: #depth! !
-
-!OMeta2TreeExample methodsFor: 'as yet unclassified' stamp: 'pb 5/23/2015 16:18'!
-readStream
-	^ self unapply readStream! !
-
-!OMeta2TreeExample methodsFor: 'as yet unclassified' stamp: 'pb 5/23/2015 16:18'!
-sum
-	^ OMeta2TreeWalkerExample match: self with: #sum! !
-
-!OMeta2TreeExample methodsFor: 'testing' stamp: 'pb 5/23/2015 14:55'!
-isCollection
-	^ true! !
-
-!OMeta2TreeExample methodsFor: 'testing' stamp: 'pb 5/23/2015 14:55'!
-isSequenceable
-	^ true! !
-
-!OMeta2TreeExample class methodsFor: 'as yet unclassified' stamp: 'pb 5/23/2015 17:01'!
-demo
-	| tree |
-	tree := self demoTree.
+!OMeta2Debug methodsFor: 'private' stamp: 'pb 4/30/2020 23:59:02'!
+ometaDebugPc
 	^ Dictionary new
 		
-			at: #depth
-			put: tree depth;
+			at: 'applyPc'
+			put: om2ApplyPc;
 		
-			at: #sum:
-			put: tree sum;
+			at: 'applyWithArgsPc'
+			put: om2ApplyWithArgsPc;
 		yourself.! !
 
-!OMeta2TreeExample class methodsFor: 'as yet unclassified' stamp: 'pb 5/23/2015 16:12'!
-demoTree
-	^ OMeta2TreeNodeExample new
-		left:
-			(OMeta2TreeNodeExample new
-				left:
-					(OMeta2TreeLeafExample new
-						value: 3;
-						yourself);
-				right:
-					(OMeta2TreeNodeExample new
-						left: OMeta2TreeLeafExample new;
-						right:
-							(OMeta2TreeNodeExample new
-								left: OMeta2TreeLeafExample new;
-								right: OMeta2TreeLeafExample new;
-								yourself);
-						yourself);
-				yourself);
-		right:
-			(OMeta2TreeNodeExample new
-				left:
-					(OMeta2TreeLeafExample new
-						value: 5;
-						yourself);
-				right: OMeta2TreeEmptyExample new yourself;
-				yourself);
-		yourself.! !
+!OMeta2Debug methodsFor: 'private' stamp: 'pb 4/30/2020 23:59:33'!
+ometaDebugRoot: aRule
+	om2DebugRoot := aRule! !
 
-!OMeta2TreeEmptyExample methodsFor: 'as yet unclassified' stamp: 'pb 5/23/2015 16:25'!
-unapply
-	^ #(#Empty ).! !
+!OMeta2Debug methodsFor: 'private' stamp: 'pb 5/1/2020 00:18:32'!
+pvtOMetaDebugFinishTrans: name id: transId
+	self pvtOMetaDebugShouldTrace ifTrue: [
+		(om2Trans at: transId)
+			
+				at: 'matched'
+				put: true;
+			
+				at: 'pos'
+				put: self ometaPositionInStream ].! !
 
-!OMeta2TreeLeafExample methodsFor: 'as yet unclassified' stamp: 'pb 5/23/2015 16:24'!
-unapply
-	^ {#Leaf. value.}! !
+!OMeta2Debug methodsFor: 'private' stamp: 'pb 4/30/2020 23:58:16'!
+pvtOMetaDebugLogTrace
+	om2TraceLog add: om2Trans.
+	om2Trans := Dictionary new.! !
 
-!OMeta2TreeLeafExample methodsFor: 'as yet unclassified' stamp: 'pb 5/23/2015 15:31'!
-value: aNumber
-	value := aNumber! !
+!OMeta2Debug methodsFor: 'private' stamp: 'pb 4/30/2020 23:58:33'!
+pvtOMetaDebugShouldTrace
+	^ false! !
 
-!OMeta2TreeLeafExample methodsFor: 'initialization' stamp: 'pb 5/23/2015 15:44'!
+!OMeta2Debug methodsFor: 'private' stamp: 'pb 5/1/2020 00:18:39'!
+pvtOMetaDebugStartTrans: name
+	self pvtOMetaDebugShouldTrace ifTrue: [
+		om2TransId := om2TransId + 1.
+		om2Trans
+			at: om2TransId
+			put:
+				(Dictionary new
+					
+						at: 'rule'
+						put: name;
+					
+						at: 'matched'
+						put: false;
+					
+						at: 'pos'
+						put: self ometaPositionInStream;
+					yourself).
+		^ om2TransId ].! !
+
+!OMeta2Debug class methodsFor: 'accessing' stamp: 'pb 6/12/2015 06:20'!
+lastMatcher
+	^ LastMatcher! !
+
+!OMeta2Debug class methodsFor: 'private' stamp: 'pb 5/10/2020 14:19:09'!
+matchStream: aReadStream with: aRule withArgs: args withPlaybackDebugging: debugging
+	| input matcher ans |
+	input := OM2LazyStream
+		for: aReadStream
+		withPos: 1.
+	matcher := self new initOMetaInputStream: input.
+	matcher ometaDebugRoot: aRule.
+	LastMatcher := matcher.
+	ans := self
+		pvtMatchOMetaStream: input
+		matcher: matcher
+		with: aRule
+		withArgs: args
+		withPlaybackDebugging: debugging.
+	Transcript
+		show: matcher ometaDebugPc asString;
+		finishEntry.
+	^ ans.! !
+
+!OMeta2Debug class methodsFor: 'private' stamp: 'pb 2/3/2016 21:33'!
+ometa2RuleTranslatorClass
+	^ OMeta2DebugRuleTranslator.! !
+
+!OMeta2DebugExample methodsFor: 'as yet unclassified' stamp: 'pb 6/20/2016 22:18'!
+debugForm =
+	{ 'testing' }! !
+
+!OMeta2DebugExample methodsFor: 'as yet unclassified' stamp: 'pb 6/12/2015 14:44'!
+infiniteRecursion  = irRule*! !
+
+!OMeta2DebugExample methodsFor: 'as yet unclassified' stamp: 'pb 6/12/2015 14:46'!
 initialize
-	value := 1! !
+	super initialize.
+	delimRow := Character lf.
+	delimCol := $,.! !
 
-!OMeta2TreeNodeExample methodsFor: 'as yet unclassified' stamp: 'pb 5/23/2015 15:25'!
-left: anObject
-	leftTree := anObject! !
+!OMeta2DebugExample methodsFor: 'as yet unclassified' stamp: 'pb 6/12/2015 14:46'!
+irField = <(~(exactly(delimCol) | exactly(delimRow)) anything)*>:field! !
 
-!OMeta2TreeNodeExample methodsFor: 'as yet unclassified' stamp: 'pb 5/23/2015 15:25'!
-right: anObject
-	rightTree := anObject! !
+!OMeta2DebugExample methodsFor: 'as yet unclassified' stamp: 'pb 6/12/2015 14:46'!
+irRule = irField (exactly(delimCol) irField)* exactly(delimRow)?! !
 
-!OMeta2TreeNodeExample methodsFor: 'as yet unclassified' stamp: 'pb 5/23/2015 16:24'!
-unapply
-	^ {#Node. leftTree unapply. rightTree unapply.}! !
+!OMeta2DebugExample methodsFor: 'as yet unclassified' stamp: 'pb 6/12/2015 14:31'!
+notASequence =
+	seq($a)! !
+
+!OMeta2DebugExample methodsFor: 'as yet unclassified' stamp: 'pb 5/1/2020 00:02:56'!
+pvtOMetaDebugShouldTrace
+	^ true.! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:20:27'!
+application =
+	@<"^" name:rule>:superIdx args:as	-> [(self pvtNewNode: #SuperApp)
+				properties: {#op -> rule.
+							#args -> as.
+							self pvtNewRange: superIdx type: #blockTempVar};
+				yourself]
+|	@<name:grm $. nsName:rule>:app1Idx	 @<args:as>:app2Idx -> [(self pvtNewNode: #App)
+				properties: {#op -> #pvtOMetaForeignParser.
+					#parm -> grm.
+					#huh1 -> ('#', rule) asSymbol.
+					#huh2 -> as.
+					self pvtNewRange: app1Idx type: #blockTempVar with: app2Idx type: #externalFunctionCallingConvention}]
+|	@<name:rule>:app1Idx @<args:as>:app2Idx					-> [(self pvtNewNode: #App)
+				properties: { #op -> rule.
+					#parm -> as.
+					self pvtNewRange: app1Idx type: #blockTempVar with: app2Idx type: #externalFunctionCallingConvention}]! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 02:02:32'!
+args =
+	/* FIXME
+	$( (
+	listOf(#squeakArgExprOrWrappedInnerBlock, ',')
+	|  listOf(#squeakExpression, '.')
+	):ans ")" -> [ans]
+	*/
+	$( listOf(#squeakArgExprOrWrappedInnerBlock, ','):ans ")" -> [ans] // new syntax
+|	$( listOf(#squeakExpression, '.'):ans ")" -> ["Transcript show: 'legacy listOf syntax with args: ', ans asString; finishEntry." ans] // legacy syntax
+|	~$( -> [#()]! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:20:34'!
+characterLiteral =
+	@<spaces $$ char:c>:cIdx -> [(self pvtNewNode: #App) properties: { #op -> #exactly.
+																#parm -> c storeString.
+																self pvtNewRange: cIdx type: #character}]! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:20:38'!
+characters =
+	@<"``" (~($' $') char)*:xs $' $'>:charIdx -> [(self pvtNewNode: #App) properties:
+							{ #op -> #seq.
+							#parm -> (String withAll: xs) storeString.
+							self pvtNewRange:  charIdx type: #character}]! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:20:41'!
+expr =
+	// Wrap the sub-expressions with an 'or'.  If it's not needed, we'll optimize it away later.
+	// FIXME - how to best highlight OR...
+	listOf(#expr4, '|'):xs -> [(self pvtNewNode: #Or) addChildren: xs]! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 14:19:01'!
+expr1 =
+	// Handle any syntactic sugar (brackets etc) and the rest of the expression
+	@<(keyword('true') | keyword('false') | keyword('nil')):lit>:litIdx
+						-> [(self pvtNewNode: #App) properties: {#op -> #exactly. #parm -> lit. self pvtNewRange: litIdx type: #nil}]
+|	application
+|	semanticAction
+|	semanticPredicate
+|	characters
+|	tokenSugar
+|	stringLiteral
+|	symbolLiteral
+|	numberLiteral
+|	characterLiteral
+|	@<"{">:blkStart [self pvtBlockEnter]  expr:e @<"}">:blkEnd
+					-> [(self pvtNewNode: #Form) properties: {#op -> e.
+											self pvtNewRange: blkStart and: blkEnd type: self pvtBlockLevelAndLeave}]
+|	@<"<">:blkStart [self pvtBlockEnter]  expr:e @<">">:blkEnd
+				 	-> [(self pvtNewNode: #ConsBy) properties: {#op -> e.
+											self pvtNewRange: blkStart and: blkEnd type: self pvtBlockLevelAndLeave}]
+|	@<"@<">:blkStart [self pvtBlockEnter] expr:e @<">">:blkEnd
+				 	-> [(self pvtNewNode: #IdxConsBy) properties: {#op -> e.
+											self pvtNewRange: blkStart and: blkEnd type: self pvtBlockLevelAndLeave}]
+|	@<"(">:blkStart expr:e @<")">:blkEnd -> [e] // FIXME - syntax highlighting! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:21:06'!
+expr2 =
+	// Handle lookahead
+	@<"~">:xIdx expr2:x -> [(self pvtNewNode: #Not) properties: {#op -> x. self pvtNewRange: xIdx type: #blockArg}] 
+|	@<"&">:xIdx expr2:x -> [(self pvtNewNode: #Lookahead) properties: {#op -> x. self pvtNewRange: xIdx type: #blockArg}] 
+|	expr1! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:21:19'!
+expr3 =
+	// Handle arity and variable assignment
+	expr2:x optIter(x):x
+		(	$: @<nsName:n>:tmpIdx [temps add: n] -> [(self pvtNewNode: #Set) properties: {#op -> n. #parm -> x. self pvtNewRange: tmpIdx type: #tempVar}]
+		|	empty						-> [x]
+		)
+|	":" nsName:n [temps add: n] -> [(self pvtNewNode: #Set) properties: {#op -> n};
+										addChild: ((self pvtNewNode: #App) properties: {#op -> #anything})]! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:21:22'!
+expr4 =
+	// Wrap related rule sub-expressions with an 'and'.  If it's not needed, we'll optimize it away later
+	expr3*:xs -> [(self pvtNewNode: #And) addChildren: xs]! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:21:30'!
+initialize
+	super initialize.
+	ast := self pvtNewNode: #rule.
+	blockLevel := 0.
+	curNode := ast.
+	curNode properties at: #comments put: OrderedCollection new.
+	temps := IdentitySet new.! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/1/2020 19:12:57'!
+keyword :xs =
+	token(xs) ~letterOrDigit -> [xs]! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/1/2020 19:12:57'!
+name =
+	spaces nsName! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/1/2020 19:12:57'!
+nameFirst =
+	letter! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/1/2020 19:12:57'!
+nameRest =
+	nameFirst | digit! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 01:25:04'!
+nsName =
+	firstAndRest(#nameFirst, #nameRest):xs -> [(String withAll: xs) asSymbol]
+|	$_ -> [#anything]
+! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:21:34'!
+numberLiteral =
+	@<spaces ($- spaces -> [-1] | empty -> [1]):sign digit+:ds>:numIdx
+		-> [(self pvtNewNode: #App) properties: {#op -> #exactly.
+				#parm -> (sign * (String withAll: ds) asNumber) storeString.
+				self pvtNewRange: numIdx type: #number}]! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:21:38'!
+ometaRule =
+	&(^space* nsName):n rulePart(n):x ("," rulePart(n))*:xs spaces end
+		-> [ curNode := (curNode node: #Rule) properties: {#temps -> temps asSortedCollection.
+					#n -> n};
+					addChild: ((self pvtNewNode: #Or) addChild: x; addChildren: xs)]! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:21:51'!
+optIter :x =
+	@<"*">:arManyIdx		-> [(self pvtNewNode: #Many) properties: {#parm -> x.
+																	self pvtNewRange: arManyIdx type: #blockArg}]
+|	@<"+">:arMany1Idx		-> [(self pvtNewNode: #Many1) properties: {#parm -> x.
+																	self pvtNewRange: arMany1Idx type: #blockArg}]
+|	@<"?">:arOptIdx ~$[	-> [(self pvtNewNode: #Opt) properties: {#parm -> x.
+																	self pvtNewRange: arOptIdx type: #blockArg}]
+|	empty	-> [x]! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/1/2020 19:17:20'!
+pvtBlockEnter
+	blockLevel := blockLevel+1.! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/1/2020 19:16:29'!
+pvtBlockLevelAndLeave
+	| retVal |
+	retVal := blockLevel caseOf: {
+		[ 1 ] -> [ #blockStart1 ].
+		[ 2 ] -> [ #blockStart2 ].
+		[ 3 ] -> [ #blockStart3 ]}
+		 otherwise: [ "Only go up to 4"
+		#blockStart4 ].
+	blockLevel := blockLevel - 1.
+	^ retVal.! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:20:02'!
+pvtNewNode: nodeType
+	^ SyntaxTreeNode node: nodeType.! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 14:20:27'!
+pvtNewRange: rangeAssoc1 and: rangeAssoc2 type: type
+	"Create assoc to be use as a range property.  This currently covers every use case except comments in the space rule."
+	| passoc |
+	passoc := self
+		pvtNewRange: rangeAssoc1
+		type: type.
+	passoc value
+		add:
+			(self
+				pvtNewSHRangeType: type
+				rangeAssoc: rangeAssoc2);
+		yourself.
+	^ passoc.! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 14:20:44'!
+pvtNewRange: rangeAssoc type: type
+	"Create assoc to be use as a range property.  This currently covers every use case except comments in the space rule"
+	^ #rangeIdxList ->
+		(OrderedCollection new
+			add:
+				(self
+					pvtNewSHRangeType: type
+					rangeAssoc: rangeAssoc);
+			yourself).! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 14:20:53'!
+pvtNewRange: rangeAssoc1 type: type1 with: rangeAssoc2 type: type2
+	"Create assoc to be use as a range property.  This currently covers every use case except comments in the space rule"
+	^ #rangeIdxList ->
+		(OrderedCollection new
+			add:
+				(self
+					pvtNewSHRangeType: type1
+					rangeAssoc: rangeAssoc1);
+			add:
+				(self
+					pvtNewSHRangeType: type2
+					rangeAssoc: rangeAssoc2);
+			yourself).! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/1/2020 19:12:57'!
+pvtNewSHRangeType: useType rangeAssoc: rangeAssoc
+	^ SHRange
+		start: rangeAssoc key
+		end: rangeAssoc value - 1
+		type: useType.! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 14:21:11'!
+rulePart :ruleName =
+	[nil]:retVal
+	@<name:n ?[n = ruleName] expr4:b1>:nIdx -> [|| curNode properties: {self pvtNewRange: nIdx type: #keyword}. retVal]
+		(	@<"=">:nIdx2 expr:b2	-> [|| ((curNode properties at: #rangeIdxList) at: 1) end: nIdx2 value. "rangeAssoc" retVal := (self pvtNewNode: #And) addChild: b1; addChild: b2] // nIdx2 is a hack to get to the '='.  Highly non-optimal as we really want params highlighted in a different style anyway
+		|	empty			-> [retVal := curNode addChild: b1]
+		)! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 6/16/2020 11:25:26'!
+ruleProduction =
+
+	"->"! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 6/16/2020 11:25:37'!
+semanticAction =
+	@<ruleProduction? "[">:saIdx1 (squeakExpression:expr|squeakInnerBlock:blk) @<$]>:saIdx2
+		-> [expr
+				ifNil: [(self pvtNewNode: #SemBlkAct) properties: {#op -> blk. self pvtNewRange: saIdx1 and: saIdx2 type: #patternArg}]
+				ifNotNil: [(self pvtNewNode: #SemAct) properties: {#op -> expr. self pvtNewRange: saIdx1 and: saIdx2 type: #patternArg}]]! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:22:06'!
+semanticPredicate =
+	@<"?[">:spIdx1 (squeakExpression:expr|squeakInnerBlock:blk) @<$]>:spIdx2
+		-> [expr
+				ifNil: [(self pvtNewNode: #SemBlkPred) properties: {#op -> blk. self pvtNewRange: spIdx1 and: spIdx2 type: #patternArg}]
+				ifNotNil: [(self pvtNewNode: #SemPred) properties: {#op -> expr. self pvtNewRange: spIdx1 and: spIdx2 type: #patternArg}]]! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/16/2020 21:36:54'!
+space =
+	^space
+	| @<fromTo('/*', '*/')>:longCommentIdx
+		-> [(curNode properties at: #comments) add: (self pvtNewSHRangeType: #comment rangeAssoc: longCommentIdx)]
+	| @<fromToEndOfLine('//')>:commentIdx
+		-> [(curNode properties at: #comments) add: (self pvtNewSHRangeType: #comment rangeAssoc: commentIdx)]
+! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 19:26:27'!
+squeakArgExprOrWrappedInnerBlock =
+
+	[self pvtOMetaGetExternalSmalltalkRecognizerClass]:recog 
+	recog.squeakArgExprOrWrappedInnerBlock:ans spaces -> [ans]! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 19:27:01'!
+squeakExpression =
+
+	@<[self pvtOMetaGetExternalSmalltalkRecognizerClass]:recog
+		recog.squeakExpr:ans>:sqIdx spaces
+			-> [(self pvtNewNode: #Smalltalk) properties: {#parm -> ans.
+				self pvtNewRange: sqIdx type: #externalFunctionCallingConvention}]! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 19:28:47'!
+squeakInnerBlock =
+
+	[self pvtOMetaGetExternalSmalltalkRecognizerClass]:recog
+	@<	recog.squeakInnerBlock:ans>:sqIdx spaces
+			 ->  [(self pvtNewNode: #Smalltalk) properties: {#parm -> ans.
+				self pvtNewRange: sqIdx type: #externalFunctionCallingConvention}]! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:22:21'!
+stringLiteral =
+	@<"'" ($' $' -> [$'] | ~$' char)*:xs $'>:strIdx -> [(self pvtNewNode: #App) properties: 											{#op -> #exactly.
+											 #parm ->  (String withAll: xs) storeString.
+											self pvtNewRange: strIdx type: #text}]! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'pb 5/2/2020 05:22:25'!
+symbolLiteral =
+	// TODO: make this accept, e.g., #foo:bar:
+	@<"#" nsName:s>:symIdx -> [(self pvtNewNode: #App) properties: {
+											#op -> #exactly.
+											#parm -> s storeString.
+											self pvtNewRange: symIdx type: #symbol
+											}]! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'private' stamp: 'MO 10/13/2024 20:53:24'!
+tokenSugar
+	| temp1 temp2 |
+	^ true ifTrue: [
+		temp1 := self pvtOMetaIndexConsumedBy: [
+			self
+				privateOMetaApply: #token
+				withArgument: '"'.
+			temp2 := self pvtOMetaMany: [
+				self pvtOMetaNot: [
+					self
+						privateOMetaApply: #exactly
+						withArgument: $" ].
+				self privateOMetaApply: #char ].
+			self
+				privateOMetaApply: #exactly
+				withArgument: $" ].
+		(self pvtNewNode: #App) properties:
+			{
+				#op -> #token. 
+				#parm -> (UnicodeString withAll: temp2) storeString. 
+				self
+					pvtNewRange: temp1
+					type: #stringSymbol
+			} ].! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'grammar' stamp: 'pb 5/1/2020 19:31:28'!
+rule =
+	squeakRule
+	| ometaRule! !
+
+!OMeta2ExtendedRuleParser methodsFor: 'grammar' stamp: 'pb 5/2/2020 05:22:17'!
+squeakRule =
+	// This isn't OMeta code so we'll handoff to Squeak when the time comes
+	~(^space* nsName expr4 "=") <char*>:squeakCode -> [self pvtNewNode: #Squeak]! !
+
+!OMeta2ExtendedRuleParser class methodsFor: 'extract' stamp: 'pb 5/2/2020 03:26:52'!
+extractRangesFromSmalltalkSourceCode: source
+	^ (self isSmalltalkSourceCode: source) ifFalse: [ | result |
+		result := OrderedCollection new.
+		(self
+			matchAll: source
+			with: #rule
+			ifFail: []) ifNotNil: [:found| found do: [ :ea |
+			self
+				pvtRecurseForRanges: ea
+				into: result ].
+		result sort: [ :a :b |
+			a start < b start ]]].! !
+
+!OMeta2ExtendedRuleParser class methodsFor: 'testing' stamp: 'pb 5/1/2020 19:28:42'!
+isSmalltalkSourceCode: aString
+	^ (self
+		matchAll: aString
+		with: #squeakRule
+		ifFail: [ false ]) = false
+		ifTrue: [ false ]
+		ifFalse: [ true ].! !
+
+!OMeta2ExtendedRuleParser class methodsFor: 'private' stamp: 'pb 5/1/2020 19:12:57'!
+pvtRecurseForRanges: ea into: result
+	ea properties
+		
+			at: #rangeIdxList
+			ifPresent: [ :ranges |
+				result addAll: ranges ];
+		
+			at: #comments
+			ifPresent: [ :ranges |
+				result addAll: ranges ];
+		
+			at: #op
+			ifPresent: [ :op |
+				(op isKindOf: SyntaxTreeNode) ifTrue: [
+					op do: [ :opNode |
+						self
+							pvtRecurseForRanges: opNode
+							into: result ]]];
+		
+			at: #parm
+			ifPresent: [ :parm |
+				(parm isKindOf: SyntaxTreeNode) ifTrue: [
+					parm do: [ :parmNode |
+						self
+							pvtRecurseForRanges: parmNode
+							into: result ]]].
+	^ result.! !
+
+!OMeta2RuleIntrospection methodsFor: 'ometa grammar' stamp: 'pb 4/27/2020 01:56:31'!
+appliesDirectOMetaRule :aRule =
+	// Is aRule directly referenced? (i.e. via apply)
+	(directApply exactly(aRule) anything* -> [self pvtStoreResult: aRule]
+	| (~directApply anything) ({appliesDirectOMetaRule(aRule)} | anything)+
+	| { appliesDirectOMetaRule(aRule) })
+	[result]! !
+
+!OMeta2RuleIntrospection methodsFor: 'ometa grammar' stamp: 'pb 5/3/2020 14:08:04'!
+appliesOMetaRule :aRule =
+	// Is aRule referenced? (i.e. via (super) apply)
+	(anyApply exactly(aRule) anything* -> [self pvtStoreResult: aRule]
+	| (~anyApply anything) ({appliesOMetaRule(aRule)} | anything)+
+	| { appliesOMetaRule(aRule) })
+	[result]! !
+
+!OMeta2RuleIntrospection methodsFor: 'ometa grammar' stamp: 'pb 4/27/2020 01:44:15'!
+referencedOMetaRules =
+	// Return a collection of all rules referenced
+	[result ifNil: [result := Set new]]
+	(anyApply anything:aRule anything* -> [result add: aRule]
+	| (~anyApply anything) ({referencedOMetaRules} | anything)+
+	| { referencedOMetaRules })
+	[result]! !
+
+!OMeta2RuleIntrospection methodsFor: 'private' stamp: 'pb 4/26/2020 19:13:28'!
+anyApply =
+	anything:found ?[#(#App #SuperApp) includes: found]! !
+
+!OMeta2RuleIntrospection methodsFor: 'private' stamp: 'pb 4/26/2020 19:53:44'!
+directApply =
+	anything:found ?[found=#App]! !
+
+!OMeta2RuleIntrospection methodsFor: 'private' stamp: 'pb 4/26/2020 19:08:39'!
+match :findItem =
+	anything:gotItem ?[gotItem=findItem]! !
+
+!OMeta2RuleIntrospection methodsFor: 'private' stamp: 'pb 5/3/2020 14:07:44'!
+nonSuperRuleSendsTo :findRule =
+	{ nonSuperRuleSendsTo(findRule) }
+	| (~(pvtInnerNonSuperRuleSendsTo(findRule)) anything)* pvtInnerNonSuperRuleSendsTo(findRule)! !
+
+!OMeta2RuleIntrospection methodsFor: 'private' stamp: 'pb 4/26/2020 18:48:52'!
+pvtInnerNonSuperRuleSendsTo :findRule =
+	~#SuperApp anything:matchRule ?[matchRule=findRule] -> [findRule]! !
+
+!OMeta2RuleIntrospection methodsFor: 'private' stamp: 'pb 4/26/2020 19:50:14'!
+pvtStoreResult: useResult
+	^ result := useResult.! !
+
+!SHTextStylerOMeta2 methodsFor: 'private' stamp: 'pb 9/3/2017 19:21:52'!
+attributesFor: aSymbol
+	^ useSmalltalkStyler
+		ifTrue: [ smalltalkFallbackStyler class attributesFor: aSymbol ]
+		ifFalse: [ self class attributesFor: aSymbol ].! !
+
+!SHTextStylerOMeta2 methodsFor: 'private' stamp: 'pb 5/2/2020 23:32:03'!
+classOrMetaClass: anObject
+	"FIXME - this is rather inefficient but if we don't determine which styler to use here (via #pvtExtractRangesFromSource), the first time we view pretty printed code it will use the wrong styler"
+	self pvtExtractRangesFromSource.
+	^ useSmalltalkStyler
+		ifTrue: [ smalltalkFallbackStyler classOrMetaClass: anObject ]
+		ifFalse: [ self ].! !
+
+!SHTextStylerOMeta2 methodsFor: 'private' stamp: 'pb 6/17/2015 00:33'!
+disableFormatAndConvert! !
+
+!SHTextStylerOMeta2 methodsFor: 'private' stamp: 'MO 3/26/2024 18:31:14'!
+privateAutoHighlight! !
+
+!SHTextStylerOMeta2 methodsFor: 'private' stamp: 'MO 3/26/2024 18:31:40'!
+privateConvertAssignmentsOffset: delta! !
+
+!SHTextStylerOMeta2 methodsFor: 'private' stamp: 'pb 6/17/2015 00:31'!
+privateFormatAndConvert! !
+
+!SHTextStylerOMeta2 methodsFor: 'private' stamp: 'MO 3/27/2024 20:50:37'!
+privateStyle
+	| ranges |
+	ranges := self pvtExtractRangesFromSource.
+	ranges ifNil: [
+		ranges := SHParserST80 new
+		classOrMetaClass: Object;
+		source: (textModel actualContents asString);
+		parse;
+		ranges
+				].
+	ranges ifNotNil: [
+		[
+		self
+			setAttributesIn: formattedText
+			fromRanges: ranges
+			in: nil
+		] on: Error do: []. 
+			].! !
+
+!SHTextStylerOMeta2 methodsFor: 'private' stamp: 'MO 3/26/2024 18:44:54'!
+pvtExtractRangesFromSource
+	useSmalltalkStyler := true.
+	"self halt."
+	^ formattedText ifNotNil: [
+		(self class rangeParserClass extractRangesFromSmalltalkSourceCode: formattedText) ifNotNil: [ :useRanges |
+			useSmalltalkStyler := false.
+			useRanges ]] ifNil: [nil].! !
+
+!SHTextStylerOMeta2 methodsFor: 'private' stamp: 'MO 3/26/2024 18:32:31'!
+setAttributesIn: aText fromRanges: ranges in: anInterval
+	"modified by jmv to keep existing attributes if they answer true to #isParagraphAttribute"
+	| attributes defaultAttributes paragraphAttributes attr newRuns newValues lastAttr lastCount beginning chunkRuns end |
+	anInterval
+		ifNil: [
+			beginning := 1.
+			end := aText size ]
+		ifNotNil: [
+			beginning := anInterval first.
+			end := anInterval last ].
+	defaultAttributes := self attributesFor: #default.
+	paragraphAttributes := Array new: end - beginning + 1.
+	1
+		to: paragraphAttributes size
+		do: [ :i |
+			paragraphAttributes
+				at: i
+				put:
+					((aText attributesAt: i + beginning - 1) select: [ :each |
+						each isParagraphAttribute ]) ].
+	attributes := Array new: end - beginning + 1.
+	1
+		to: attributes size
+		do: [ :i |
+			attributes
+				at: i
+				put: (paragraphAttributes at: i) , defaultAttributes ].
+	ranges do: [ :range |
+		(attr := self attributesFor: range rangeType) ifNotNil: [
+			range start
+				to: range end
+				do: [ :i |
+					attributes
+						at: i
+						put: (paragraphAttributes at: i) , attr ]]].
+	newRuns := OrderedCollection new.
+	newValues := OrderedCollection new.
+	1
+		to: attributes size
+		do: [ :i |
+			attr := attributes at: i.
+			i = 1
+				ifTrue: [
+					newRuns add: 1.
+					lastCount := 1.
+					lastAttr := newValues add: attr ]
+				ifFalse: [
+					attr == lastAttr
+						ifTrue: [
+							lastCount := lastCount + 1.
+							newRuns
+								at: newRuns size
+								put: lastCount ]
+						ifFalse: [
+							newRuns add: 1.
+							lastCount := 1.
+							lastAttr := newValues add: attr ]]].
+	chunkRuns := (RunArray
+		runs: newRuns
+		values: newValues) coalesce.
+	aText
+		basicReplaceAttributesFrom: beginning
+		to: end
+		with: chunkRuns.! !
+
+!SHTextStylerOMeta2 methodsFor: 'private' stamp: 'pb 5/2/2020 14:29:41'!
+workspace: inst
+	"Needed for Debugger>>shoutAboutToStyle:"
+	self flag: #FIXME.
+	^ nil.! !
+
+!SHTextStylerOMeta2 methodsFor: 'initialization' stamp: 'pb 9/3/2017 19:21:19'!
+initialize
+	super initialize.
+	useSmalltalkStyler := false.
+	smalltalkFallbackStyler := SHTextStylerST80 new.! !
+
+!SHTextStylerOMeta2 methodsFor: 'styling' stamp: 'MO 3/26/2024 18:30:37'!
+getReady! !
+
+!SHTextStylerOMeta2 methodsFor: 'styling' stamp: 'MO 3/26/2024 18:30:56'!
+parseText! !
+
+!SHTextStylerOMeta2 class methodsFor: 'accessing' stamp: 'pb 5/1/2020 19:13:39'!
+rangeParserClass
+	^ OMeta2ExtendedRuleParser.! !
+
+!SHTextStylerOMeta2 class methodsFor: 'private' stamp: 'pb 6/17/2015 00:15'!
+attributeArrayForColor: aColorOrNil emphasis: anEmphasisSymbolOrArrayorNil
+	"Answer a new Array containing any non nil TextAttributes specified"
+	| answer emphArray |
+	answer := #().
+	aColorOrNil ifNotNil: [ answer := answer , {TextColor color: aColorOrNil} ].
+	anEmphasisSymbolOrArrayorNil ifNotNil: [
+		emphArray := anEmphasisSymbolOrArrayorNil isSymbol
+			ifTrue: [ {anEmphasisSymbolOrArrayorNil} ]
+			ifFalse: [ anEmphasisSymbolOrArrayorNil ].
+		emphArray do: [ :each |
+			each ~= #normal ifTrue: [ answer := answer , {TextEmphasis perform: each} ]]].
+	^ answer.! !
+
+!SHTextStylerOMeta2 class methodsFor: 'private' stamp: 'pb 4/22/2020 02:50:53'!
+attributesFor: aSymbol
+	^ (textAttributes ifNil: [ textAttributes := self initialTextAttributes ])
+		at: aSymbol
+		ifAbsent:
+			(self
+				attributeArrayForColor: Color black
+				emphasis: nil).! !
+
+!SHTextStylerOMeta2 class methodsFor: 'private' stamp: 'pb 5/23/2018 01:53:53'!
+initialTextAttributes
+	"emphasis can be bold, italic, underlined... what about outline & strikethrough?"
+	false
+		ifTrue: [ | attrArray color dict element emphasis styleTable |
+			"FIXME - at some point want to finish integrating with themes rather than the hard-coded approach currently being used..."
+			styleTable := Theme current generateShoutConfig.
+			dict := Dictionary new.
+			styleTable do: [ :each |
+				element := each first.
+				color := each
+					at: 2
+					ifAbsent: nil.
+				color := color ifNotNil: [ Color colorFrom: color ].
+				emphasis := each
+					at: 3
+					ifAbsent: nil.
+				attrArray := self
+					attributeArrayForColor: color
+					emphasis: emphasis.
+				attrArray notEmpty ifTrue: [
+					dict
+						at: element
+						put: attrArray ]].
+			^ dict ]
+		ifFalse: [ "keys: #nil->keywords (true/false/nil)
+			#tempVar->inst vars
+			#comment->/* */ and // comments
+			#blockStartN->block nesting level
+			#keyword->rules & parms
+			#blockArg->arity (*+?)/lookahead (&~)
+			#blockTempVar->apply/rule name
+			#text->'string'
+			#stringSymbol->token
+			#character->$c and ``abc''
+			#patternArg->semantic action/predicate
+			#number->123
+			#externalFunctionCallingConvention->squeak code"
+			^ Dictionary new
+				addAll:
+					{
+						#nil ->
+							(self
+								attributeArrayForColor: Color red muchDarker
+								emphasis: nil). 
+						#tempVar ->
+							(self
+								attributeArrayForColor: Color gray muchDarker
+								emphasis: #italic). 
+						#blockStart1 ->
+							(self
+								attributeArrayForColor:
+									(Color
+										r: 0.6
+										g: 0.6
+										b: 0.6)
+								emphasis: nil). 
+						#blockStart2 ->
+							(self
+								attributeArrayForColor:
+									(Color
+										r: 0.45
+										g: 0.45
+										b: 0.45)
+								emphasis: nil). 
+						#blockStart3 ->
+							(self
+								attributeArrayForColor:
+									(Color
+										r: 0.3
+										g: 0.3
+										b: 0.3)
+								emphasis: nil). 
+						#blockStart4 ->
+							(self
+								attributeArrayForColor:
+									(Color
+										r: 0.15
+										g: 0.15
+										b: 0.15)
+								emphasis: nil). 
+						#blockStart5 ->
+							(self
+								attributeArrayForColor:
+									(Color
+										r: 0.0
+										g: 0.0
+										b: 0.0)
+								emphasis: nil). 
+						#default ->
+							(self
+								attributeArrayForColor: Color black
+								emphasis: nil). 
+						#comment ->
+							(self
+								attributeArrayForColor: Color green
+								emphasis: #italic). 
+						#keyword ->
+							(self
+								attributeArrayForColor: Color blue lighter
+								emphasis: #bold). 
+						#blockArg ->
+							(self
+								attributeArrayForColor: Color orange lighter
+								emphasis: #bold). 
+						#blockTempVar ->
+							(self
+								attributeArrayForColor: Color blue
+								emphasis: nil). 
+						#text ->
+							(self
+								attributeArrayForColor: Color blue
+								emphasis: #bold). 
+						#stringSymbol ->
+							(self
+								attributeArrayForColor: Color blue muchDarker
+								emphasis: #bold). 
+						#symbol ->
+							(self
+								attributeArrayForColor: Color blue darker
+								emphasis: #bold). 
+						#character ->
+							(self
+								attributeArrayForColor: Color red muchDarker
+								emphasis: nil). 
+						#patternArg ->
+							(self
+								attributeArrayForColor: Color cyan muchDarker
+								emphasis: nil). 
+						#number ->
+							(self
+								attributeArrayForColor: Color purple
+								emphasis: nil). 
+						#externalFunctionCallingConvention ->
+							(self
+								attributeArrayForColor: Color cyan veryMuchDarker
+								emphasis: nil)
+					};
+				yourself ].! !
+
+!SHTextStylerOMeta2 class methodsFor: 'private' stamp: 'pb 6/18/2020 02:35:14'!
+privateResetTextAttributes
+	textAttributes := nil! !
+
+!SHTextStylerOMeta2 class methodsFor: 'private-development' stamp: 'pb 6/17/2015 01:09'!
+resetAttributes
+	textAttributes := nil! !
+
+!SHTextStylerOtherOMeta2 methodsFor: 'private' stamp: 'pb 4/25/2020 04:01:29'!
+privateStyle
+	| ranges |
+	useSmalltalkStyler := true.
+	ranges := self class rangeParserClass extractRangesFromSmalltalkSourceCode: formattedText.
+	ranges ifNil: [ | idx |
+		useSmalltalkStyler := false.
+		idx := formattedText indexOf: Character lf.
+		ranges := idx > 0
+			ifTrue: [
+				{
+					SHRange
+						start: 1
+						end: idx - 1
+						type: #bold. 
+					SHRange
+						start: idx
+						end: formattedText size
+						type: #normal
+				} ]
+			ifFalse: [
+				{
+					SHRange
+						start: 1
+						end: formattedText size
+						type: #error
+				} ]].
+	ranges ifNotNil: [
+		self
+			setAttributesIn: formattedText
+			fromRanges: ranges
+			in: nil ].! !
+
+!SHTextStylerOtherOMeta2 class methodsFor: 'private' stamp: 'pb 9/3/2017 18:32:05'!
+initialTextAttributes
+	"emphasis can be bold, italic, underlined... what about outline & strikethrough?"
+	^ Dictionary new
+		
+			at: #bold
+			put:
+				(self
+					attributeArrayForColor: Color black
+					emphasis: #bold);
+		
+			at: #default
+			put:
+				(self
+					attributeArrayForColor: Color black
+					emphasis: nil);
+		
+			at: #error
+			put:
+				(self
+					attributeArrayForColor: Color red
+					emphasis: nil);
+		yourself.! !
+
+!SHTextStylerOtherOMeta2 class methodsFor: 'as yet unclassified' stamp: 'pb 5/1/2020 19:13:47'!
+rangeParserClass
+	^ OMeta2ExtendedRuleParser.! !
+
+!OMeta2DebugTests methodsFor: 'test case' stamp: 'pb 6/20/2016 22:23'!
+testForm
+	"Verify that debug tracing logic doesn't interfere with form operation"
+	self should: (OMeta2DebugExample debugMatch: #('testing') with: #debugForm) = #('testing')
+! !
+
+!OMeta2DebugTests methodsFor: 'test case' stamp: 'pb 5/2/2020 14:30:20'!
+testInfiniteRecursion
+	self flag: #FIXME. "Also need to handle case where not eos but input not advancing"
+	self should: [OMeta2DebugExample match: 'does not matter what goes here' with: #infiniteRecursion] raise: OMeta2DebugError "Infinite recursion detected".
+! !
+
+!OMeta2DebugTests methodsFor: 'test case' stamp: 'pb 6/12/2015 14:59'!
+testNotASequence
+	self should: [OMeta2DebugExample match: 'does not matter what goes here' with: #notASequence] raise: OMeta2DebugError "Not a sequence: a".
+! !
+
+!OMeta2ExampleTests methodsFor: 'test case' stamp: 'pb 5/20/2020 00:08:12'!
+testAllLowercase
+	self should:
+		(OMeta2ExamplesCoverage
+			matchAll: 'lower'
+			with: #allLowercase).
+	self shouldFail: [
+		OMeta2ExamplesCoverage
+			matchAll: 'Lower'
+			with: #allLowercase ].! !
+
+!OMeta2ExampleTests methodsFor: 'test case' stamp: 'pb 5/20/2020 00:08:12'!
+testAllUppercase
+	self should:
+		(OMeta2ExamplesCoverage
+			matchAll: 'UPPER'
+			with: #allUppercase).
+	self shouldFail: [
+		OMeta2ExamplesCoverage
+			matchAll: 'Upper'
+			with: #allUppercase ].! !
+
+!OMeta2ExampleTests methodsFor: 'test case' stamp: 'pb 5/26/2015 03:43'!
+testFactorial
+	self should: (OMeta2Examples match: 0 with: #fact) = 1.
+	self should: (OMeta2Examples match: 5 with: #fact) = 120.
+	self should: (OMeta2Examples match: 10 with: #fact) = 3628800.! !
+
+!OMeta2ExampleTests methodsFor: 'test case' stamp: 'pb 5/22/2015 16:54'!
+testGreeting
+	self should: (OMeta2Examples matchAll: 'howdy' with: #greeting) = 'howdy'! !
+
+!OMeta2ExampleTests methodsFor: 'test case' stamp: 'pb 5/9/2020 04:40:53'!
+testIdentifierIndex
+	"rangeAssoc"
+	self
+		assert: 1 -> 9
+		equals:
+			(OMeta2Examples
+				matchAll: 'abc123sd'
+				with: #identifierIdx).! !
+
+!OMeta2ExampleTests methodsFor: 'test case' stamp: 'pb 5/23/2015 22:01'!
+testLambdaCalculus
+	self should: (OMeta2LambdaCalculusParserExample matchAll: '4' with: #digit) = 4.
+	self should: (OMeta2LambdaCalculusParserExample matchAll: 'x and y' with: #root) =   #(#('and' #('name' #x) #('name' #y))).
+	self should: (OMeta2LambdaCalculusParserExample matchAll: 'x and y;x*y' with: #root) =   #(#('and' #('name' #x) #('name' #y)) #('mul' #('name' #x) #('name' #y)))! !
+
+!OMeta2ExampleTests methodsFor: 'test case' stamp: 'pb 5/24/2019 19:12:10'!
+testLisp
+	| lispClass |
+	lispClass := OMeta2LispExample.
+	"*** ev rule tests..."
+	"string"
+	self should: (lispClass eval: #t).
+	self should: (lispClass eval: #z) = nil.
+	"lambda... under app rule tests"
+	"quote"
+	self should: (lispClass eval: #(#quote 1 )) = 1.
+	self should: (lispClass eval: #(
+				#quote
+				#(1 2 3 )
+			)) = #(1 2 3 ).
+	"cond"
+	self should: (lispClass eval: #(#cond nil )) = nil.
+	self should: (lispClass eval: #(
+				#cond
+				#(#(#eq #(#quote #a) #(#quote #b)) #(#quote #optiona) )
+				#(#(#eq #(#quote #b) #(#quote #b)) #(#quote #optionb) )
+				#(#t #(#quote #invalid) )
+			)) = #optionb.
+	self should: (lispClass eval: #(
+				#cond
+				#(#(#eq #(#quote #a) #(#quote #b)) #(#quote #optiona) )
+				#(#(#eq #(#quote #b) #(#quote 3)) #(#quote #optionb) )
+				#(#t #(#quote #invalid) )
+			)) = #invalid.
+	"*** app rule tests..."
+	"car"
+	self should: (lispClass eval: #(
+				#car
+				#(#quote #(1 2 3) )
+			)) = 1.
+	"cdr"
+	self flag: #fixTest.
+	"Should this be an OC?"
+	"self should: (lispClass eval: #(cdr (quote (1 2 3)))) = #(2 3)."
+	self should:
+		(lispClass eval: #(
+				#cdr
+				#(#quote #(1 2 3) )
+			)) =
+			(OrderedCollection new
+				add: 2;
+				add: 3;
+				yourself).
+	"cons"
+	self should: (lispClass eval: #(
+				#cons
+				#(#quote #a )
+				#(#quote #b )
+			)) = #(#a #b ).
+	"atom"
+	self should: (lispClass eval: #(
+				#atom
+				#(#quote #a )
+			)).
+	self should: (lispClass eval: #(
+				#atom
+				#(#cons #(#quote #a) #(#quote #b) )
+			)) not.
+	"eq"
+	"a and b are both nil so eq should always return true (in a real Lisp environment, this would result in an error)"
+	self should: (lispClass eval: #(#eq #a #a )).
+	self should: (lispClass eval: #(#eq #a #b )).
+	"when quoted, you get the results you were probably expecting"
+	self should: (lispClass eval: #(
+				#eq
+				#(#quote #a )
+				#(#quote #a )
+			)).
+	self should: (lispClass eval: #(
+				#eq
+				#(#quote #a )
+				#(#quote #b )
+			)) not.
+	"lambda"
+	self should: (lispClass eval: #(
+				#(#lambda #(#x) #(#cons #x #x) )
+				#(#quote #boo )
+			)) = #(#boo #boo ).
+	"*** more complex and multiple expressions"
+	self should: (lispClass evalAll: #(
+				#(#eq #(#quote #a) #(#quote #b) )
+				#(#cons #(#quote #x) #(#quote #y) )
+			)) = #(#x #y ).
+	self should: (lispClass evalAll: #(
+				#(#cons #(#eq #(#quote #a) #(#quote #b)) #(#cons #(#quote #x) #(#quote #y)) )
+			)) = #(
+				false
+				#(#x #y )
+			).
+	self should: (lispClass evalAll: #(
+				#(#(#lambda #(#x) #(#cons #x #x)) #(#quote #boo) )
+				#(#eq #a #b )
+			)).
+	self should: (lispClass evalAll: #(
+				#(#cons #(#(#lambda #(#x) #(#cons #x #x)) #(#quote #boo)) #(#eq #x #(#quote #boo)) )
+			)) = #(
+				#(#boo #boo )
+				false
+			).
+	self should: (lispClass eval: #(
+				#(#lambda #(#x) #(#cond #(#(#eq #(#quote #a) #x) #(#quote #optiona)) #(#(#eq #(#quote #b) #x) #(#quote #optionb)) #(#t #(#quote #invalid))) )
+				#(#quote #a )
+			)) = #optiona.
+	self should: (lispClass eval: #(
+				#(#lambda #(#x) #(#cond #(#(#eq #(#quote #a) #x) #(#quote #optiona)) #(#(#eq #(#quote #b) #x) #(#quote #optionb)) #(#t #(#quote #invalid))) )
+				#(#quote #b )
+			)) = #optionb.
+	self should: (lispClass eval: #(
+				#(#lambda #(#x) #(#cond #(#(#eq #(#quote #a) #x) #(#quote #optiona)) #(#(#eq #(#quote #b) #x) #(#quote #optionb)) #(#t #(#quote #invalid))) )
+				#(#quote #c )
+			)) = #invalid.! !
+
+!OMeta2ExampleTests methodsFor: 'test case' stamp: 'pb 5/20/2020 00:30:59'!
+testNotLastNumber
+	self should:
+		(OMeta2ExamplesCoverage
+			matchAll:
+				{1. 1. 'ok'}
+			with: #notLastNumber).
+	self shouldFail: [
+		OMeta2ExamplesCoverage
+			matchAll:
+				{1. 'bad'. 'ok'}
+			with: #notLastNumber ].! !
+
+!OMeta2ExampleTests methodsFor: 'test case' stamp: 'pb 5/20/2020 00:35:52'!
+testNotLastUppercase
+	self should:
+		(OMeta2ExamplesCoverage
+			matchAll: 'CAps'
+			with: #notLastUppercase).
+	self shouldFail: [
+		OMeta2ExamplesCoverage
+			matchAll: 'Caps'
+			with: #notLastUppercase ].! !
+
+!OMeta2ExampleTests methodsFor: 'test case' stamp: 'pb 5/26/2015 03:34'!
+testNumber
+	self should: (OMeta2Examples matchAll: '1234' with: #number) = 1234.
+	self should: [OMeta2Examples match: '1234' with: #number] raise: OM2Fail.
+! !
+
+!OMeta2ExampleTests methodsFor: 'test case' stamp: 'pb 5/22/2015 16:53'!
+testObjectStructure
+	self should: (OMeta2Examples matchAll: #($a $b $c 1 2 3 #(4 5)) with: #structure) = #(4 5)
+! !
+
+!OMeta2ExampleTests methodsFor: 'test case' stamp: 'pb 5/20/2020 00:08:12'!
+testRangeFromTo
+	self should:
+		(OMeta2ExamplesCoverage
+			match: $c
+			with: #rangeFromTo
+			withArgs:
+				{$a. $f}) = $c.
+	self shouldFail: [
+		OMeta2ExamplesCoverage
+			match: $g
+			with: #rangeFromTo
+			withArgs:
+				{$a. $f} ].
+	self should:
+		(OMeta2ExamplesCoverage
+			match: 20
+			with: #rangeFromTo
+			withArgs:
+				{10. 100}) = 20.! !
+
+!OMeta2ExampleTests methodsFor: 'test case' stamp: 'pb 5/22/2015 16:52'!
+testStringMatch
+	self should: (OMeta2Examples matchAll: 'abc123' with: #identifier) = 'abc123'
+! !
+
+!OMeta2ExampleTests methodsFor: 'test case' stamp: 'pb 5/23/2015 16:22'!
+testTree
+	| tree |
+	tree := OMeta2TreeExample demoTree.
+	self should:  tree unapply = #(#Node #(#Node #(#Leaf 3) #(#Node #(#Leaf 1) #(#Node #(#Leaf 1) #(#Leaf 1)))) #(#Node #(#Leaf 5) #(#Empty))).
+	self should: tree depth = 5.
+	self should: tree sum = 11.! !
+
+!OMeta2StepByStepTests methodsFor: 'test case' stamp: 'pb 6/9/2015 22:36'!
+test00Anything
+	"Understanding how OMeta views input is critical.  To OMeta, the input stream is just one or more objects."
+
+	"Will literally match anything (i.e. an identity match)"
+	self should: (OMeta2StepByStepExample match: nil with: #testAnything) = nil.
+	self should: (OMeta2StepByStepExample match: $a with: #testAnything) = $a.
+	self should: (OMeta2StepByStepExample match: '' with: #testAnything) = ''.
+	self should: (OMeta2StepByStepExample match: 'aaa' with: #testAnything) = 'aaa'.
+	self should: (OMeta2StepByStepExample match: 3 with: #testAnything) = 3.
+	self should: (OMeta2StepByStepExample match: Dictionary with: #testAnything) = Dictionary. "you can pass in objects of any type, including classes"
+	self should: (OMeta2StepByStepExample match: #($a 'b' (1 2 3) nil) with: #testAnything) = #($a 'b' (1 2 3) nil). "in this case, the array is treated as a single object to be matched"
+
+	"If you have many anythings, we can match those too"
+	self should: (OMeta2StepByStepExample matchAll: #($a 'b' (1 2 3) nil) with: #testManyAnything) = (OrderedCollection new add: $a; add: 'b'; add: #(1 2 3); add: nil; yourself). "in this case, the array is treated as a collection of objects to be matched"
+	self should: (OMeta2StepByStepExample matchAll: 'aaa' with: #testManyAnything) = (OrderedCollection new add: $a; add: $a; add: $a; yourself) "a string is just a collection of characters.  this will be hit on a couple of more times... it's important!!"! !
+
+!OMeta2StepByStepTests methodsFor: 'test case' stamp: 'pb 5/2/2020 14:30:39'!
+test01Character
+	| emptyOC aOC aaaaaOC |
+	"FIXME - need to cover letter, digit, etc."
+	"covers the use of literals as well as * and + operators with character matches"
+	emptyOC := OrderedCollection new.
+	aOC := (OrderedCollection new add: $a; yourself).
+	aaaaaOC := OrderedCollection new add: $a; add: $a; add: $a; add: $a; add: $a; yourself.
+
+	"Note that #matchAll: expects strings for arity matches since 'string' is just a sequence of characters while #match: expects a single character"
+	self should: (OMeta2StepByStepExample match: $a with: #testLiteralChar) = $a.
+	self should: (OMeta2StepByStepExample matchAll: 'a' with: #testLiteralChar) = $a.
+	self should: (OMeta2StepByStepExample matchAll: '' with: #testManyChar) = emptyOC. "Note that this works since * allows 0 matches"
+	self should: (OMeta2StepByStepExample matchAll: 'aaaaa' with: #testManyChar) = aaaaaOC.
+	self should: (OMeta2StepByStepExample matchAll: 'aaaaa' with: #testMany1Char) = aaaaaOC.
+	self should: (OMeta2StepByStepExample matchAll: 'a' with: #testMany1Char) = aOC. "#test04ConsumedBy  shows you one way to get strings back"! !
+
+!OMeta2StepByStepTests methodsFor: 'test case' stamp: 'pb 6/9/2015 22:37'!
+test02String
+	| abcOC abcabcOC |
+	"covers the use of literals, *, +, ? and tokens with string matches"
+	abcOC := (OrderedCollection new add: 'abc'; yourself).
+	abcabcOC := OrderedCollection new add: 'abc'; add: 'abc'; yourself.
+
+	"Note that #matchAll: expects collections of strings for arity matches since 'string' is a single string object while #match: expects a single string"
+	self should: (OMeta2StepByStepExample match: 'abc' with: #testLiteralString) = 'abc'.
+	self should: (OMeta2StepByStepExample matchAll: #('abc' ) with: #testLiteralString) = 'abc'.
+	self should: (OMeta2StepByStepExample matchAll: #('abc' 'abc' ) with: #testManyString) = abcabcOC.
+	self should: (OMeta2StepByStepExample matchAll: #('abc' 'abc' ) with: #testMany1String) = abcabcOC.
+	self should: (OMeta2StepByStepExample matchAll: #('abc' ) with: #testMany1String) = abcOC.
+	self should: (OMeta2StepByStepExample matchAll: 'abc' with: #testOpt) = 'abc'.
+	self should: (OMeta2StepByStepExample matchAll: '' with: #testOpt) = nil.
+
+	"Tokens are strings that ignore leading spaces.  You could override the definition of #spaces to include other types of whitespace if you want for your grammar."
+	self should: (OMeta2StepByStepExample matchAll: '   item      item' with: #testToken) = 'item'.! !
+
+!OMeta2StepByStepTests methodsFor: 'test case' stamp: 'pb 6/9/2015 22:37'!
+test03Sequence
+	"Sequences (i.e. ordered collections) of objects"
+	self should: (OMeta2StepByStepExample matchAll: 'itemitem' with: #testSeqString) = 'item'.
+	self should: (OMeta2StepByStepExample matchAll: #($i $t $e $m $i $t $e $m) with: #testSeqString) = 'item'. "sequences of characters are strings as far as seq is concerned"
+	self should: (OMeta2StepByStepExample matchAll: #(1 2 3) with: #testSeqObject) = #(1 2 3). "not just for strings though"! !
+
+!OMeta2StepByStepTests methodsFor: 'test case' stamp: 'pb 5/9/2020 04:41:21'!
+test04ConsumedBy
+	"rangeAssoc"
+	"pvtOMetaConsumedBy <> and pvtOMetaIndexConsumedBy @<>"
+	"Returns the input 'consumed' by the rule.  Now we don't have to deal with a collection of characters"
+	self
+		assert: 'feed me'
+		equals:
+			(OMeta2StepByStepExample
+				matchAll: 'feed me'
+				with: #testConsumedBy).
+	"this returns the positional index range of the beginning and end of the match"
+	self
+		assert: 1 -> 8
+		equals:
+			(OMeta2StepByStepExample
+				matchAll: 'feed me'
+				with: #testConsumedByIndex).! !
+
+!OMeta2StepByStepTests methodsFor: 'test case' stamp: 'pb 5/9/2019 23:22:07'!
+test05PredicateAction
+	self should:
+		(OMeta2StepByStepExample
+			matchAll: 'testing'
+			with: #testSemanticPredicate).
+	"notice that the predicate, being the last expression in the rule, again overrides the default return value.  This rule also introduces the assignment operator."
+	self should:
+		(OMeta2StepByStepExample
+			matchAll: 'testing'
+			with: #testSemanticAction) = 'got it!!'.! !
+
+!OMeta2StepByStepTests methodsFor: 'test case' stamp: 'pb 6/9/2015 22:58'!
+test06PrioritizedChoice
+	self should: (OMeta2StepByStepExample matchAll: 'testing' with: #testPrioritizedChoice) = 'got it!!'. "prioritized choice to the rescue!!"
+	self should: (OMeta2StepByStepExample matchAll: 'not' with: #testPrioritizedChoice) = 'not'.
+! !
+
+!OMeta2StepByStepTests methodsFor: 'test case' stamp: 'pb 5/2/2020 14:30:49'!
+test07Lookahead
+	"FIXME - todo & operator"
+	self should: (OMeta2StepByStepExample matchAll: '''not a double quote''' with: #testLookaheadNot) = #($' $n $o $t $  $a $  $d $o $u $b $l $e $  $q $u $o $t $e $') asOrderedCollection. "we get a sequence of characters back because this rule matches character by character."! !
+
+!OMeta2StepByStepTests methodsFor: 'test case' stamp: 'pb 6/10/2015 14:36'!
+test08RuleParameters
+	self should: (OMeta2StepByStepExample matchAll: 'looking for test text' with: #testRuleParameters) = 'looking for test text'! !
+
+!OMeta2StepByStepTests methodsFor: 'test case' stamp: 'pb 6/10/2015 15:00'!
+test10FromTo
+	self should: (OMeta2StepByStepExample matchAll: '/* finding */ the test text...' with: #testFromTo) = #($f $i $n $d $i $n $g $  $t $e $x $t $. $. $.) asOrderedCollection! !
 OMeta2SqueakSmalltalkRecognizer initialize!
 OMeta2Package postPackageInstall!
